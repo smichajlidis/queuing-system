@@ -1,23 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include <queue>
 #include "include/QueuesManager.hpp"
-#include "include/WindowsManager.hpp"
 
 int main() {
 
-    QueuesManager queues;
-    WindowsManager windows;
+    QueuesManager queuesManager {};
 
-    std::queue<int> a {};
-
-    queues.addQueue(a);
     
-    queues.pickATicket(0);
-    queues.pickATicket(0);
-    queues.pickATicket(0);
-
-    windows.addWindow(sf::VideoMode(200, 200), "SFML works!");
-
     //sf::CircleShape shape(100.f);
     //shape.setFillColor(sf::Color::Green);
 
