@@ -1,18 +1,21 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
+#include "Queue.hpp"
+#include "Window.hpp"
+#include "Station.hpp"
+#include <memory>
 #include <vector>
-#include <queue>
+#include <string>
 
 class QueuesManager {
-
-    std::vector<std::queue<int>> queues;
-
+private:
+    std::vector<std::shared_ptr<Window>> windows;
+    std::vector<Queue> queues;
 public:
-    void addQueue(std::queue<int>&);
-    void pickATicket(int queueNum);
-    QueuesManager() {};
+    void addWindow(std::shared_ptr<Window> window);
+    void addQueue(Queue& queue);
+    QueuesManager();
     ~QueuesManager() {};
-
 };
 
 #endif
