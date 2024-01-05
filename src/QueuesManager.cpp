@@ -1,9 +1,21 @@
 #include "../include/QueuesManager.hpp"
 
-void QueuesManager::addQueue(std::queue<int>& queue) {
+QueuesManager::QueuesManager() {
+    Queue queue;
+    queue.pickATicket();
+    queue.pickATicket();
+    queue.pickATicket();
+    addQueue(queue);
+    std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(300, 300), "title");
+    addWindow(station);
+    station->addRelatedQueue(queue); 
+
+}
+
+void QueuesManager::addQueue(Queue& queue) {
     queues.push_back(queue);
 }
 
-void QueuesManager::pickATicket(int queueNum) {
-    queues.at(queueNum).push(queues.at(queueNum).size()+1);
+void QueuesManager::addWindow(std::shared_ptr<Window> window) {
+    windows.push_back(window);
 }
