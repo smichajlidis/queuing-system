@@ -6,3 +6,15 @@ Station::Station(const sf::VideoMode& mode, const std::string& title)
 void Station::display() const {
     
 }
+
+void Station::processEvents() {
+
+}
+
+void Station::update() {
+
+}
+
+void Station::render() {
+
+}
