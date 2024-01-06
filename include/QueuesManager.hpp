@@ -13,6 +13,7 @@ private:
     std::vector<Queue> queues;
 public:
     void addWindow(std::shared_ptr<Window> window);
+    void runAllWindows();
     void addQueue(Queue& queue);
     QueuesManager();
     ~QueuesManager() {};
