@@ -11,7 +11,11 @@ protected:
     sf::RenderWindow window;
     std::vector<std::shared_ptr<Queue>> relatedQueues;
     std::string title;
+    sf::Font font;
+    sf::Text text;
 public:
+    virtual void setText(const std::string& content, const sf::Vector2f& position);
+    
     virtual void addRelatedQueue(const Queue& relatedQueue);
     virtual bool isOpen() const;
     virtual void run();
