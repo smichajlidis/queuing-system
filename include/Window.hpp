@@ -11,7 +11,12 @@ protected:
     std::vector<std::shared_ptr<Queue>> relatedQueues;
 public:
     virtual void addRelatedQueue(const Queue& relatedQueue);
+    virtual bool isOpen() const;
     virtual void display() const = 0;
+    virtual void run();
+    virtual void processEvents() = 0;
+    virtual void update() = 0;
+    virtual void render() = 0;
     Window(const sf::VideoMode& mode, const std::string& title);
     ~Window() {};
 };
