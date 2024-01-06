@@ -13,12 +13,16 @@ int Queue::getATicket(int pos) const {
     return queue.at(pos);
 }
 
+char Queue::getSignature() const {
+    return signature;
+}
+
 Queue::Queue() {}
 
-Queue::Queue(std::string topic)
-    : topic (topic) {}
+Queue::Queue(std::string topic, char signature)
+    : topic (topic), signature (signature) {}
 
-Queue::Queue(std::string topic, int priority)
-    : topic (topic), priority (priority) {}
+Queue::Queue(std::string topic, char signature, int priority)
+    : topic (topic), signature (signature), priority (priority) {}
 
 Queue::~Queue() {}
