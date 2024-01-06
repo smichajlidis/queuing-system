@@ -10,6 +10,19 @@ QueuesManager::QueuesManager() {
     addWindow(station);
     station->addRelatedQueue(queue); 
 
+    runAllWindows();
+
+}
+
+void QueuesManager::runAllWindows() {
+    for (auto it = windows.begin(); it != windows.end();) {
+        if ((*it)->isOpen()) {
+            (*it)->run();
+            it = windows.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void QueuesManager::addQueue(Queue& queue) {
