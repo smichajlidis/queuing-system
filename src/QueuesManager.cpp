@@ -1,7 +1,7 @@
 #include "../include/QueuesManager.hpp"
 
 QueuesManager::QueuesManager() {
-    Queue queue;
+    Queue queue {"Example", 'E'};
     queue.pickATicket();
     queue.pickATicket();
     queue.pickATicket();
