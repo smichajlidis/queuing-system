@@ -6,7 +6,7 @@ QueuesManager::QueuesManager() {
     queue.pickATicket();
     queue.pickATicket();
     addQueue(queue);
-    std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(300, 300), "title");
+    std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), "Station number 1");
     addWindow(station);
     station->addRelatedQueue(queue); 
 
