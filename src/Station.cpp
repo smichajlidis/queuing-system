@@ -32,7 +32,7 @@ void Station::render() {
 
     for (size_t i = 0; i < relatedQueues.size(); ++i) {
         for (size_t j = 0; j < relatedQueues.at(i)->size(); ++j) {
-            sf::Text numberText(std::to_string(relatedQueues.at(i)->getATicket(j)), font, 18);
+            sf::Text numberText(relatedQueues.at(i)->getSignature()+std::to_string(relatedQueues.at(i)->getATicket(j)), font, 18);
             numberText.setFillColor(sf::Color::White);
             numberText.setPosition(50, 50 + i * 30 + j * 20);
             window.draw(numberText);
