@@ -26,6 +26,19 @@ void Station::processEvents() {
 void Station::render() {
     window.clear();
 
+    text.setString("List of printed tickets: ");
+    text.setPosition(20, 20);
+    window.draw(text);
+
+    for (size_t i = 0; i < relatedQueues.size(); ++i) {
+        for (size_t j = 0; j < relatedQueues.at(i)->size(); ++j) {
+            sf::Text numberText(std::to_string(relatedQueues.at(i)->getATicket(j)), font, 18);
+            numberText.setFillColor(sf::Color::White);
+            numberText.setPosition(50, 50 + i * 30 + j * 20);
+            window.draw(numberText);
+        }
+    }
+
     window.draw(nextButton);
     window.draw(confirmButton);
 
