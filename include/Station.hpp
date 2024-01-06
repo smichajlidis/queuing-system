@@ -4,11 +4,11 @@
 #include "Window.hpp"
 
 class Station: public Window {
-
+private:
+    sf::RectangleShape nextButton;
+    sf::RectangleShape confirmButton;
 public:
-    virtual void display() const override;
     virtual void processEvents() override;
-    virtual void update() override;
     virtual void render() override;
     Station(const sf::VideoMode& mode, const std::string& title);
 };
