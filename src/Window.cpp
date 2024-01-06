@@ -14,7 +14,6 @@ bool Window::isOpen() const {
 void Window::run() {
     while (window.isOpen()) {
         processEvents();
-        update();
         render();
     }
 }
