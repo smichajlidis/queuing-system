@@ -1,4 +1,5 @@
 #include "../include/Station.hpp"
+#include <iostream>
 
 Station::Station(const sf::VideoMode& mode, const std::string& newTitle)
     : Window(mode, newTitle), nextButton (sf::Vector2f(150, 50)),
@@ -20,6 +21,23 @@ void Station::processEvents() {
         if (event.type == sf::Event::Closed) {
             window.close();
         }
+        else if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    // Check if the mouse has clicked on a button
+                    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                    sf::FloatRect nextButtonBounds = nextButton.getGlobalBounds();
+                    sf::FloatRect confirmButtonBounds = confirmButton.getGlobalBounds();
+
+                    if (nextButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+                        // Next button event
+                        std::cout << "Next button clicked!" << std::endl;
+                    }
+                    else if (confirmButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+                        // Confirm button event
+                        std::cout << "Confirm button clicked!" << std::endl;
+                    }
+                }
+        } 
     }
 }
 
