@@ -8,9 +8,11 @@ class Station: public Window {
 private:
     sf::RectangleShape nextButton;
     sf::RectangleShape confirmButton;
+    std::string currentTicket;
 public:
     virtual void processEvents() override;
     virtual void render() override;
+    void getCurrentTicket();
     Station(const sf::VideoMode& mode, const std::string& title);
 };
 
