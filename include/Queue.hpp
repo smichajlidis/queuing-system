@@ -13,6 +13,7 @@ public:
     void pickATicket(); // take a new ticket
     size_t size() const;
     char getSignature() const;
+    void deleteFirstTicket();
     int getATicket(int pos) const; // get a name of existing ticket
     Queue();
     Queue(std::string topic, char signature);
