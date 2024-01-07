@@ -26,3 +26,7 @@ Queue::Queue(std::string topic, char signature, int priority)
     : topic (topic), signature (signature), priority (priority) {}
 
 Queue::~Queue() {}
+
+void Queue::deleteFirstTicket() {
+    queue.erase(queue.begin());
+}
