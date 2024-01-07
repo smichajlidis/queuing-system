@@ -26,7 +26,7 @@ void Station::processEvents() {
 void Station::render() {
     window.clear();
 
-    text.setString("List of printed tickets: ");
+    text.setString("List of waiting tickets: ");
     text.setPosition(20, 20);
     window.draw(text);
 
@@ -38,9 +38,23 @@ void Station::render() {
             window.draw(numberText);
         }
     }
+    
+    text.setString("Current ticket: ");
+    text.setPosition(20, 400);
+    window.draw(text);
+    getCurrentTicket();
 
     window.draw(nextButton);
     window.draw(confirmButton);
 
     window.display();
+}
+
+void Station::getCurrentTicket() {
+    if (!currentTicket.empty()) {
+        sf::Text numberText(currentTicket, font, 18);
+        numberText.setFillColor(sf::Color::White);
+        numberText.setPosition(200, 400);
+        window.draw(numberText);
+    }
 }
