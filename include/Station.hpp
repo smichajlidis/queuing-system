@@ -9,10 +9,13 @@ private:
     sf::RectangleShape nextButton;
     sf::RectangleShape confirmButton;
     std::string currentTicket;
+    bool waitingForCurrentTicket {false}; // true when nextButton was clicked but confirmButton hasn't been clicked yet.
 public:
     virtual void processEvents() override;
     virtual void render() override;
     void getCurrentTicket();
+    void callNextPerson();
+    void confirmNextPerson();
     Station(const sf::VideoMode& mode, const std::string& title);
 };
 
