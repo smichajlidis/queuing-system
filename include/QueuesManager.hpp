@@ -3,6 +3,7 @@
 #include "Queue.hpp"
 #include "Window.hpp"
 #include "Station.hpp"
+#include "Kiosk.hpp"
 #include <memory>
 #include <vector>
 #include <string>
@@ -10,11 +11,11 @@
 class QueuesManager {
 private:
     std::vector<std::shared_ptr<Window>> windows;
-    std::vector<Queue> queues;
+    std::vector<std::shared_ptr<Queue>> queues;
 public:
     void addWindow(std::shared_ptr<Window> window);
     void runAllWindows();
-    void addQueue(Queue& queue);
+    void addQueue(std::shared_ptr<Queue> queue);
     QueuesManager();
     ~QueuesManager() {};
 };
