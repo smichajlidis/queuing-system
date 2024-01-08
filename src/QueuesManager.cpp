@@ -1,14 +1,17 @@
 #include "../include/QueuesManager.hpp"
 
 QueuesManager::QueuesManager() {
-    Queue queue {"Example", 'E'};
-    queue.pickATicket();
-    queue.pickATicket();
-    queue.pickATicket();
+    std::shared_ptr<Queue> queue = std::make_shared<Queue>("Example", 'E');
+    //Queue queue {"Example", 'E'};
+    queue->pickATicket();
+    queue->pickATicket();
+    queue->pickATicket();
     addQueue(queue);
     std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), "Station number 1");
     addWindow(station);
-    station->addRelatedQueue(queue); 
+    station->addRelatedQueue(*queue);
+
+    Kiosk kiosk(sf::VideoMode(400,600), "Kiosk nr 1", queues); 
 
     runAllWindows();
 
@@ -25,7 +28,7 @@ void QueuesManager::runAllWindows() {
     }
 }
 
-void QueuesManager::addQueue(Queue& queue) {
+void QueuesManager::addQueue(std::shared_ptr<Queue> queue) {
     queues.push_back(queue);
 }
 
