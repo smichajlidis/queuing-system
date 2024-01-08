@@ -3,7 +3,7 @@
 Window::Window(const sf::VideoMode& mode, const std::string& title)
     : window(mode, title) {
 
-    if (!font.loadFromFile("../resources/fonts//Lato-Regular.ttf")) {
+    if (!font.loadFromFile("../resources/fonts/Lato-Regular.ttf")) {
         // Handling exception
     }
     text.setFont(font);
