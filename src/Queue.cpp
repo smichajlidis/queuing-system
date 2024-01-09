@@ -17,10 +17,9 @@ char Queue::getSignature() const {
     return signature;
 }
 
-Queue::Queue() {}
-
-Queue::Queue(std::string topic, char signature)
-    : topic (topic), signature (signature) {}
+std::string Queue::getTopic() const {
+    return topic;
+}
 
 Queue::Queue(std::string topic, char signature, int priority)
     : topic (topic), signature (signature), priority (priority) {}
