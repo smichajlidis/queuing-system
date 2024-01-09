@@ -20,7 +20,7 @@ bool Window::isOpen() const {
 }
 
 void Window::run() {
-    while (window.isOpen()) {
+    if (window.isOpen()) {
         processEvents();
         render();
     }
