@@ -9,7 +9,7 @@
 
 class Kiosk: public Window {
 private:
-    std::unordered_map<std::shared_ptr<Queue>, sf::RectangleShape> topics;
+    std::unordered_map<std::string, sf::RectangleShape> topics;
 public:
     virtual void processEvents() override;
     virtual void render() override;
