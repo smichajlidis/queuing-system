@@ -1,4 +1,5 @@
 #include "../include/Queue.hpp"
+#include <iostream>
 
 void Queue::pickATicket() {
     queue.push_back(queueLength+1);
