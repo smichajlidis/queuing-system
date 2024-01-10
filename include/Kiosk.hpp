@@ -13,6 +13,7 @@ private:
 public:
     virtual void processEvents() override;
     virtual void render() override;
+    void newTicket(const std::string& topic) const;
     Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues);    
 };
 
