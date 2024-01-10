@@ -11,8 +11,8 @@ Window::Window(const sf::VideoMode& mode, const std::string& title)
     text.setFillColor(sf::Color::White);    
     }
 
-void Window::addRelatedQueue(const Queue& relatedQueue) {
-    relatedQueues.push_back(std::make_shared<Queue>(relatedQueue));
+void Window::addRelatedQueue(std::shared_ptr<Queue> relatedQueue) {
+    relatedQueues.push_back(relatedQueue);
 }
 
 bool Window::isOpen() const {
