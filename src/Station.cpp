@@ -17,7 +17,7 @@ Station::Station(const sf::VideoMode& mode, const std::string& newTitle)
 
 void Station::processEvents() {
     sf::Event event;
-    while (window.pollEvent(event)) {
+    if (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             window.close();
         }
@@ -41,18 +41,20 @@ void Station::processEvents() {
 
 void Station::render() {
     window.clear();
-
     text.setString("List of waiting tickets: ");
     text.setPosition(20, 20);
     window.draw(text);
+    
+    int column = 1;
 
     for (size_t i = 0; i < relatedQueues.size(); ++i) {
         for (size_t j = 0; j < relatedQueues.at(i)->size(); ++j) {
             sf::Text numberText(relatedQueues.at(i)->getSignature()+std::to_string(relatedQueues.at(i)->getATicket(j)), font, 18);
             numberText.setFillColor(sf::Color::White);
-            numberText.setPosition(50, 50 + i * 30 + j * 20);
+            numberText.setPosition(50*column, 50 + 30 + j * 20);
             window.draw(numberText);
         }
+        ++column;
     }
     if (waitingForCurrentTicket)
         text.setString("Waiting for: ");
