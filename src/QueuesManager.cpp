@@ -2,17 +2,21 @@
 
 QueuesManager::QueuesManager() {
     std::shared_ptr<Queue> queue = std::make_shared<Queue>("Example", 'E');
+    std::shared_ptr<Queue> queue2 = std::make_shared<Queue>();
     queue->pickATicket();
     queue->pickATicket();
     queue->pickATicket();
     addQueue(queue);
+    addQueue(queue2);
     std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), "Station number 1");
     addWindow(station);
-    station->addRelatedQueue(*queue);
+    station->addRelatedQueue(queue);
+    station->addRelatedQueue(queue2);
 
     std::shared_ptr<Kiosk> kiosk = std::make_shared<Kiosk>(sf::VideoMode(400,600), "Kiosk nr 1", queues);
     addWindow(kiosk);
-    kiosk->addRelatedQueue(*queue);
+    kiosk->addRelatedQueue(queue);
+    kiosk->addRelatedQueue(queue2);
 
     runAllWindows();
 
