@@ -16,7 +16,7 @@ protected:
 public:
     virtual void setText(const std::string& content, const sf::Vector2f& position);
     
-    virtual void addRelatedQueue(const Queue& relatedQueue);
+    virtual void addRelatedQueue(std::shared_ptr<Queue> relatedQueue);
     virtual bool isOpen() const;
     virtual void run();
     virtual void processEvents() = 0;
