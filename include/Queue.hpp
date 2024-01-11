@@ -16,8 +16,6 @@ public:
     void deleteFirstTicket();
     int getATicket(int pos) const; // get a name of existing ticket
     std::string getTopic() const;
-    //Queue();
-    //Queue(std::string topic = "Queue", char signature = 'Q');
     Queue(std::string topic = "Queue", char signature = 'Q', int priority = 1);
     ~Queue();
 };
