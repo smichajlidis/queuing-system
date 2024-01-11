@@ -1,39 +1,27 @@
 #include "../include/Kiosk.hpp"
 
 Kiosk::Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues)
-    :  Window(mode, title) {
-
-        int distance {1};
-
-        for(auto& queue: queues) {
-            sf::RectangleShape ticketButton {sf::Vector2f(200, 50)};
-            ticketButton.setFillColor(sf::Color::Black);
-            ticketButton.setPosition(20, 60*distance);
-            ticketButton.setOutlineColor(sf::Color::White);
-            ticketButton.setOutlineThickness(2.f);
-
-            std::string description {queue->getTopic()};
-
-            topics.insert(std::make_pair(description, ticketButton));
-            ++distance;
-        }
-
+    :  Window(mode, title, queues) {
 }
 
 void Kiosk::processEvents() {
     sf::Event event;
-    if (window.pollEvent(event)) {
+    while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             window.close();
         }
         else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-            for (const auto& topic: topics) {
-                const sf::FloatRect& buttonBounds = topic.second.getGlobalBounds();
+
+            int distance = 1;
+
+            for (auto& queue : relatedQueues) {
+                const sf::FloatRect buttonBounds(20, 60 * distance, 200, 50);
                 if (buttonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
-                    newTicket(topic.first);
+                    newTicket(*queue);
                     break;
                 }
+                ++distance;
             }
         }
     }
@@ -42,22 +30,30 @@ void Kiosk::processEvents() {
 void Kiosk::render() {
     window.clear();
     int distance {1};
-    for (const auto& topic : topics) {
-        text.setString(topic.first);
-        text.setPosition(25, 60*distance+10);
-        window.draw(topic.second);
+
+    for (auto& queue: relatedQueues) {
+        // if you change size, change also buttonBounds dimensions in proceesEvents() method
+        sf::RectangleShape ticketButton {sf::Vector2f(200, 50)};
+        ticketButton.setFillColor(sf::Color::Black);
+        ticketButton.setPosition(20, 60 * distance);
+        ticketButton.setOutlineColor(sf::Color::White);
+        ticketButton.setOutlineThickness(2.f);
+
+        sf::Text text;
+        text.setFont(font);
+        text.setCharacterSize(20);
+        text.setFillColor(sf::Color::White);
+        text.setString(queue->getTopic());
+        text.setPosition(25, 60 * distance + 10);
+
+        window.draw(ticketButton);
         window.draw(text);
-        ++distance;   
+
+        ++distance;
     }
     window.display();
 }
 
-void Kiosk::newTicket(const std::string& topic) const {
-    for (auto queue: relatedQueues) {
-        if (queue->getTopic() == topic) {
-            queue->pickATicket();
-            break;
-        }
-    }
-    // Handling exception
+void Kiosk::newTicket(Queue& queue) const {
+        queue.pickATicket();
 }
