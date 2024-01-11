@@ -16,7 +16,7 @@ public:
     void getCurrentTicket();
     void callNextPerson();
     void confirmNextPerson();
-    Station(const sf::VideoMode& mode, const std::string& title);
+    Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues);
 };
 
 #endif
