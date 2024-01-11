@@ -28,10 +28,10 @@ void Station::processEvents() {
                     sf::FloatRect nextButtonBounds = nextButton.getGlobalBounds();
                     sf::FloatRect confirmButtonBounds = confirmButton.getGlobalBounds();
 
-                    if (nextButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+                    if (nextButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)) && waitingForCurrentTicket == false) {
                         callNextPerson();
                     }
-                    else if (confirmButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) {
+                    else if (confirmButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)) && waitingForCurrentTicket == true) {
                         confirmNextPerson();
                     }
                 }
@@ -80,24 +80,52 @@ void Station::getCurrentTicket() {
 }
 
 void Station::callNextPerson() {
-    if (relatedQueues.empty()) {
-        std::cerr << "Error: No related queues." << std::endl;
-        return;
-    }
-    char previousTicketSignature = currentTicket[0];
-    bool foundCurrentQueue = false;
-    for (const auto &queue: relatedQueues) {
-        if (foundCurrentQueue && queue->size()) {
-            currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
-            return;
-        } else if (queue->getSignature() == previousTicketSignature) {
-            foundCurrentQueue = true;
+
+    char previousTicketSignature = '\0';
+    bool foundPreviousQueue = false;
+    int lapCounter {0};
+
+    if (!currentTicket.empty())
+        previousTicketSignature = currentTicket[0];
+
+    do {
+        for (const auto& queue: relatedQueues) {
+            if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0'))
+                foundPreviousQueue = true;
+            else if (foundPreviousQueue && queue->size()) {
+                currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
+                waitingForCurrentTicket = true;
+                return;
+            }
         }
-    }
-    if (relatedQueues.at(0)->size()) {
-        currentTicket = relatedQueues.at(0)->getSignature() + std::to_string(relatedQueues.at(0)->getATicket(0));
-        waitingForCurrentTicket = true;
-    }
+        ++lapCounter;
+    } while(lapCounter<2);
+
+
+    // if (relatedQueues.empty()) {
+    //     std::cerr << "Error: No related queues." << std::endl;
+    //     return;
+    // }
+    // char previousTicketSignature = '\0';
+    // if (!currentTicket.empty()) {
+    //     previousTicketSignature = currentTicket[0];
+    // }
+    // bool foundCurrentQueue = false;
+    // int lapCounter {0};
+    // do {
+    //     for (const auto& queue: relatedQueues) {
+    //         if (queue->size() && (currentTicket.empty() || foundCurrentQueue)) {
+    //             currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
+    //             waitingForCurrentTicket = true;
+    //             return;
+    //         }
+    //         if (queue->size() && queue->getSignature() == previousTicketSignature) {
+    //             foundCurrentQueue = true;
+    //         }
+    //     }
+    //     ++lapCounter;
+    // } while(foundCurrentQueue == true && lapCounter<2);
+
 }
 
 void Station::confirmNextPerson() {
