@@ -21,7 +21,7 @@ public:
     virtual void run();
     virtual void processEvents() = 0;
     virtual void render() = 0;
-    Window(const sf::VideoMode& mode, const std::string& title);
+    Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues = {});
     ~Window() {};
 };
 
