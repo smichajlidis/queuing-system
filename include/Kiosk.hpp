@@ -8,12 +8,10 @@
 #include <memory>
 
 class Kiosk: public Window {
-private:
-    std::unordered_map<std::string, sf::RectangleShape> topics;
 public:
     virtual void processEvents() override;
     virtual void render() override;
-    void newTicket(const std::string& topic) const;
+    void newTicket(Queue& queue) const;
     Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues);    
 };
 
