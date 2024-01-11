@@ -1,8 +1,8 @@
 #include "../include/Station.hpp"
 #include <iostream>
 
-Station::Station(const sf::VideoMode& mode, const std::string& newTitle)
-    : Window(mode, newTitle), nextButton (sf::Vector2f(150, 50)),
+Station::Station(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues)
+    : Window(mode, newTitle, relatedQueues), nextButton (sf::Vector2f(150, 50)),
     confirmButton (sf::Vector2f(150, 50)) {
 
     title = newTitle;
