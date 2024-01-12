@@ -31,3 +31,7 @@ void Window::setText(const std::string& content, const sf::Vector2f& position) {
     text.setString(content);
     text.setPosition(position);
 }
+
+std::string Window::getTitle() const {
+    return title;
+}
