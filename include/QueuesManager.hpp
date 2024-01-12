@@ -4,9 +4,11 @@
 #include "Window.hpp"
 #include "Station.hpp"
 #include "Kiosk.hpp"
+#include "AllQueuesScreen.hpp"
 #include <memory>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 class QueuesManager {
 private:
