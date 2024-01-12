@@ -19,6 +19,7 @@ public:
     virtual void addRelatedQueue(std::shared_ptr<Queue> relatedQueue);
     virtual bool isOpen() const;
     virtual void run();
+    virtual std::string getTitle() const;
     virtual void processEvents() = 0;
     virtual void render() = 0;
     Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues = {});
