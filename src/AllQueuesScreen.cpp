@@ -1,7 +1,7 @@
 #include "../include/AllQueuesScreen.hpp"
 #include <iostream>
 
-AllQueuesScreen::AllQueuesScreen(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Window>>& stations)
+AllQueuesScreen::AllQueuesScreen(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations)
     : Window(mode, newTitle, relatedQueues), activeStations(stations) {
 }
 
@@ -43,8 +43,14 @@ void AllQueuesScreen::render() {
     for (size_t i = 0; i < activeStations.size(); ++i) {
         sf::Text stationTopic(activeStations.at(i)->getTitle(), font, 18);
         stationTopic.setFillColor(sf::Color::White);
-        stationTopic.setPosition(50*column, 300 + count * 30);
+        stationTopic.setPosition(50*column + 30, 300 + count * 30);
         window.draw(stationTopic);
+
+        sf::Text actualTicket(activeStations.at(i)->getCurrentTicketName(), font, 18);
+        actualTicket.setFillColor(sf::Color::White);
+        actualTicket.setPosition(50*column + 120, 300 + count * 30);
+
+        window.draw(actualTicket);
         ++count;
         if ((i+1)%3==0) {
             column+=4;
