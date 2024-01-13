@@ -44,7 +44,7 @@ QueuesManager::QueuesManager() {
     std::shared_ptr<Station> station5 = std::make_shared<Station>(sf::VideoMode(400, 600), "Station 5", relatedQueues5);
     addWindow(station5);
     // create vector of existing stations for allQueuesScreen
-    std::vector<std::shared_ptr<Window>> stations;
+    std::vector<std::shared_ptr<Station>> stations;
     stations.push_back(station);
     stations.push_back(station2);
     stations.push_back(station3);
