@@ -14,6 +14,7 @@ public:
     virtual void processEvents() override;
     virtual void render() override;
     void getCurrentTicket();
+    std::string getCurrentTicketName() const;
     void callNextPerson();
     void confirmNextPerson();
     Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues);
