@@ -137,3 +137,7 @@ void Station::confirmNextPerson() {
         waitingForCurrentTicket = false;
     }
 }
+
+std::string Station::getCurrentTicketName() const {
+    return currentTicket;
+}
