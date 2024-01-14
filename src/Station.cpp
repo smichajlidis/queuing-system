@@ -94,38 +94,12 @@ void Station::callNextPerson() {
                 foundPreviousQueue = true;
             else if (foundPreviousQueue && queue->size()) {
                 currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
-                waitingForCurrentTicket = true;
+                setWaitingForCurrentTicketAsTrue();
                 return;
             }
         }
         ++lapCounter;
     } while(lapCounter<2);
-
-
-    // if (relatedQueues.empty()) {
-    //     std::cerr << "Error: No related queues." << std::endl;
-    //     return;
-    // }
-    // char previousTicketSignature = '\0';
-    // if (!currentTicket.empty()) {
-    //     previousTicketSignature = currentTicket[0];
-    // }
-    // bool foundCurrentQueue = false;
-    // int lapCounter {0};
-    // do {
-    //     for (const auto& queue: relatedQueues) {
-    //         if (queue->size() && (currentTicket.empty() || foundCurrentQueue)) {
-    //             currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
-    //             waitingForCurrentTicket = true;
-    //             return;
-    //         }
-    //         if (queue->size() && queue->getSignature() == previousTicketSignature) {
-    //             foundCurrentQueue = true;
-    //         }
-    //     }
-    //     ++lapCounter;
-    // } while(foundCurrentQueue == true && lapCounter<2);
-
 }
 
 void Station::confirmNextPerson() {
@@ -140,4 +114,17 @@ void Station::confirmNextPerson() {
 
 std::string Station::getCurrentTicketName() const {
     return currentTicket;
+}
+
+bool Station::getWaitingForCurrentTicket() const {
+    return waitingForCurrentTicket;
+}
+
+void Station::setWaitingForCurrentTicketAsTrue() {
+    animator.start();
+    waitingForCurrentTicket = true;
+}
+
+void Station::notConfirmedTicketAnimation(sf::Text& ticket) {
+    animator.notConfirmedTicketAnimation(ticket);
 }
