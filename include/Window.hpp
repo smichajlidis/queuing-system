@@ -5,6 +5,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "Queue.hpp"
+#include "Animator.hpp"
 
 class Window {
 protected:
@@ -13,6 +14,7 @@ protected:
     std::string title;
     sf::Font font;
     sf::Text text;
+    Animator animator;
 public:
     virtual void setText(const std::string& content, const sf::Vector2f& position);
     
