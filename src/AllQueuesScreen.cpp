@@ -47,10 +47,13 @@ void AllQueuesScreen::render() {
         window.draw(stationTopic);
 
         sf::Text actualTicket(activeStations.at(i)->getCurrentTicketName(), font, 18);
-        actualTicket.setFillColor(sf::Color::White);
         actualTicket.setPosition(50*column + 120, 300 + count * 30);
-
+        // animate if the ticket is not confirmed yet
+        if (activeStations.at(i)->getWaitingForCurrentTicket())
+            activeStations.at(i)->notConfirmedTicketAnimation(actualTicket);
+        
         window.draw(actualTicket);
+        
         ++count;
         if ((i+1)%3==0) {
             column+=4;
