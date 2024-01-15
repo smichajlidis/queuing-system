@@ -104,13 +104,8 @@ void Station::callNextPerson() {
 }
 
 void Station::confirmNextPerson() {
-    //if (waitingForCurrentTicket == true) {
-        //for (const auto &queue: relatedQueues) {
-            //if (currentTicket[0] == queue->getSignature())
-                //queue->deleteFirstTicket();
-        //}
         waitingForCurrentTicket = false;
-    //}
+
 }
 
 std::string Station::getCurrentTicketName() const {
