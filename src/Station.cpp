@@ -95,6 +95,7 @@ void Station::callNextPerson() {
             else if (foundPreviousQueue && queue->size()) {
                 currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
                 setWaitingForCurrentTicketAsTrue();
+                queue->deleteFirstTicket();
                 return;
             }
         }
@@ -103,13 +104,13 @@ void Station::callNextPerson() {
 }
 
 void Station::confirmNextPerson() {
-    if (waitingForCurrentTicket == true) {
-        for (const auto &queue: relatedQueues) {
-            if (currentTicket[0] == queue->getSignature())
-                queue->deleteFirstTicket();
-        }
+    //if (waitingForCurrentTicket == true) {
+        //for (const auto &queue: relatedQueues) {
+            //if (currentTicket[0] == queue->getSignature())
+                //queue->deleteFirstTicket();
+        //}
         waitingForCurrentTicket = false;
-    }
+    //}
 }
 
 std::string Station::getCurrentTicketName() const {
