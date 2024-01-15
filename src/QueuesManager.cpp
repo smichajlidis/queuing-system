@@ -1,6 +1,26 @@
 #include "../include/QueuesManager.hpp"
 
 QueuesManager::QueuesManager() {
+
+    std::cout << "How many stations do you want to create?" << std::endl;
+    int numberOfStations {};
+    bool repeat {false};
+    do {
+        repeat = false;
+        try {
+            std::cin >> numberOfStations;
+            if (std::cin.fail() || numberOfStations > 9 || numberOfStations < 1) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                throw InvalidNumberOfStationsException();
+            }
+        } catch (const InvalidNumberOfStationsException &ex) {
+            std::cerr << ex.what() << std::endl;
+            repeat = true;
+        }
+    } while (repeat);
+
+
     // create examples queues
     std::shared_ptr<Queue> queue = std::make_shared<Queue>("Example", 'E');
     std::shared_ptr<Queue> queue2 = std::make_shared<Queue>();
