@@ -1,5 +1,6 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
+#include "exceptions/InvalidNumberOfStationsException.hpp"
 #include "Queue.hpp"
 #include "Window.hpp"
 #include "Station.hpp"
@@ -9,6 +10,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iostream>
+#include <limits>
 
 class QueuesManager {
 private:
