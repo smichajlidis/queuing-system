@@ -3,22 +3,25 @@
 QueuesManager::QueuesManager() {
 
     int numberOfQueues {systemCreator("queues",12)};
-    int numberOfStations {systemCreator("stations",9)};
 
+    for (int i = 0; i < numberOfQueues; ++i)
+        addQueue(queuesCreator());
+
+    int numberOfStations {systemCreator("stations",9)};
     // create examples queues
     std::shared_ptr<Queue> queue = std::make_shared<Queue>("Example", 'E');
     std::shared_ptr<Queue> queue2 = std::make_shared<Queue>();
     std::shared_ptr<Queue> queue3 = std::make_shared<Queue>("New example", 'N');
     std::shared_ptr<Queue> queue4 = std::make_shared<Queue>("Another example", 'A');
 
-    queue->pickATicket();
-    queue->pickATicket();
-    queue->pickATicket();
+    // queue->pickATicket();
+    // queue->pickATicket();
+    // queue->pickATicket();
     // add queues to vectors of all queues
-    addQueue(queue);
-    addQueue(queue2);
-    addQueue(queue3);
-    addQueue(queue4);
+    // addQueue(queue);
+    // addQueue(queue2);
+    // addQueue(queue3);
+    // addQueue(queue4);
     // create vector of relatedQueues for a station
     std::vector<std::shared_ptr<Queue>> relatedQueues;
     relatedQueues.push_back(queue);
@@ -103,4 +106,45 @@ int QueuesManager::systemCreator(const std::string& issue, int limit) const {
         }
     } while (repeat);
     return givenNumber;
+}
+
+#include <cctype>
+
+std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
+    std::string topic {};
+    std::string signatureTemp {};
+    char signature {};
+    bool repeat {false};
+    std::cout << "Give a topic of the queue - no more than 20 characters: " << std::endl;
+    do {
+        repeat = false;
+        try {
+            std::cin >> topic;
+            if (topic.size() > 20)
+                throw TooManyCharsException();
+        } catch (const TooManyCharsException &ex) {
+            std::cerr << ex.what() << std::endl;
+            repeat = true;
+        }
+    } while (repeat);
+
+    std::cout << "Give a signature of the queue - only one character: " << std::endl;
+    do {
+        repeat = false;
+        std::cin >> signatureTemp;
+        char signature = signatureTemp[0];
+        try {
+            if (!std::isalpha(signature))
+                throw NotLetterException();
+        } catch (const NotLetterException &ex) {
+            std::cerr << ex.what() << std::endl;
+            repeat = true;
+        }
+    } while (repeat);
+
+    if (std::islower(signature))
+            signature = std::toupper(signature);
+
+    return std::make_shared<Queue>(topic, signature);
+    
 }
