@@ -1,6 +1,6 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
-#include "exceptions/InvalidNumberOfStationsException.hpp"
+#include "exceptions/InvalidAmountException.hpp"
 #include "Queue.hpp"
 #include "Window.hpp"
 #include "Station.hpp"
@@ -21,6 +21,7 @@ public:
     void addWindow(std::shared_ptr<Window> window);
     void runAllWindows();
     void addQueue(std::shared_ptr<Queue> queue);
+    int systemCreator(const std::string& issue, int limit) const;
     QueuesManager();
     ~QueuesManager() {};
 };
