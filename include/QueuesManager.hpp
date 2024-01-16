@@ -1,6 +1,8 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
 #include "exceptions/InvalidAmountException.hpp"
+#include "exceptions/NotLetterException.hpp"
+#include "exceptions/TooManyCharsException.hpp"
 #include "Queue.hpp"
 #include "Window.hpp"
 #include "Station.hpp"
@@ -22,6 +24,7 @@ public:
     void runAllWindows();
     void addQueue(std::shared_ptr<Queue> queue);
     int systemCreator(const std::string& issue, int limit) const;
+    std::shared_ptr<Queue> queuesCreator() const;
     QueuesManager();
     ~QueuesManager() {};
 };
