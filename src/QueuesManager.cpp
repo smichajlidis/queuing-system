@@ -2,24 +2,8 @@
 
 QueuesManager::QueuesManager() {
 
-    std::cout << "How many stations do you want to create?" << std::endl;
-    int numberOfStations {};
-    bool repeat {false};
-    do {
-        repeat = false;
-        try {
-            std::cin >> numberOfStations;
-            if (std::cin.fail() || numberOfStations > 9 || numberOfStations < 1) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                throw InvalidNumberOfStationsException();
-            }
-        } catch (const InvalidNumberOfStationsException &ex) {
-            std::cerr << ex.what() << std::endl;
-            repeat = true;
-        }
-    } while (repeat);
-
+    int numberOfQueues {systemCreator("queues",12)};
+    int numberOfStations {systemCreator("stations",9)};
 
     // create examples queues
     std::shared_ptr<Queue> queue = std::make_shared<Queue>("Example", 'E');
@@ -98,4 +82,25 @@ void QueuesManager::addQueue(std::shared_ptr<Queue> queue) {
 
 void QueuesManager::addWindow(std::shared_ptr<Window> window) {
     windows.push_back(window);
+}
+
+int QueuesManager::systemCreator(const std::string& issue, int limit) const {
+    std::cout << "How many "<< issue << " do you want to create?" << std::endl;
+    bool repeat {false};
+    int givenNumber {};
+    do {
+        repeat = false;
+        try {
+            std::cin >> givenNumber;
+            if (std::cin.fail() || givenNumber > limit || givenNumber < 1) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                throw InvalidAmountException(limit);
+            }
+        } catch (const InvalidAmountException &ex) {
+            std::cerr << ex.what() << std::endl;
+            repeat = true;
+        }
+    } while (repeat);
+    return givenNumber;
 }
