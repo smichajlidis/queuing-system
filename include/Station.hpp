@@ -13,8 +13,8 @@ private:
 public:
     virtual void processEvents() override;
     virtual void render() override;
-    void getCurrentTicket();
-    std::string getCurrentTicketName() const;
+    void drawCurrentTicket();
+    std::string getCurrentTicket() const;
     void callNextPerson();
     void confirmNextPerson();
     bool getWaitingForCurrentTicket() const;
