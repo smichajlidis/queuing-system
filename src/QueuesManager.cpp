@@ -132,7 +132,7 @@ std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
     do {
         repeat = false;
         std::cin >> signatureTemp;
-        char signature = signatureTemp[0];
+        signature = signatureTemp[0];
         try {
             if (!std::isalpha(signature))
                 throw NotLetterException();
@@ -141,10 +141,8 @@ std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
             repeat = true;
         }
     } while (repeat);
-
     if (std::islower(signature))
-            signature = std::toupper(signature);
-
+        signature = std::toupper(signature);
     return std::make_shared<Queue>(topic, signature);
     
 }
