@@ -62,7 +62,7 @@ void Station::render() {
         text.setString("Current ticket: ");
     text.setPosition(20, 400);
     window.draw(text);
-    getCurrentTicket();
+    drawCurrentTicket();
 
     window.draw(nextButton);
     window.draw(confirmButton);
@@ -70,7 +70,7 @@ void Station::render() {
     window.display();
 }
 
-void Station::getCurrentTicket() {
+void Station::drawCurrentTicket() {
     if (!currentTicket.empty()) {
         sf::Text numberText(currentTicket, font, 18);
         numberText.setFillColor(sf::Color::White);
@@ -108,7 +108,7 @@ void Station::confirmNextPerson() {
 
 }
 
-std::string Station::getCurrentTicketName() const {
+std::string Station::getCurrentTicket() const {
     return currentTicket;
 }
 
