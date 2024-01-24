@@ -38,6 +38,10 @@ This project is a queue management system simulator developed using the SFML lib
 4. **Ticket Handling**:
    - At each station, use the green button to call a ticket and the blue button to confirm the customer's presence.
 
+## Presentation Video
+
+[![Watch the video](https://img.youtube.com/vi/-F0IpD7jhmM/0.jpg)](https://www.youtube.com/watch?v=-F0IpD7jhmM)
+
 ## Contributing
 
 Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements.
