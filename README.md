@@ -40,7 +40,11 @@ This project is a queue management system simulator developed using the SFML lib
 
 ## Presentation Video
 
-[![Watch the video](https://img.youtube.com/vi/-F0IpD7jhmM/0.jpg)](https://www.youtube.com/watch?v=-F0IpD7jhmM)
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=-F0IpD7jhmM">
+    <img src="https://img.youtube.com/vi/-F0IpD7jhmM/0.jpg" alt="Watch the video" width="480" height="360">
+  </a>
+</div>
 
 ## Contributing
 
