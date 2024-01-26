@@ -16,11 +16,29 @@ This project is a queue management system simulator developed using the SFML lib
 
 1. **Requirements**: Ensure you have SFML installed. You can download it [here](https://www.sfml-dev.org/download.php).
 
-2. **Build**: Compile the project using your preferred C++ compiler.
+2. **Clone the repository:**
+    ```bash
+    git clone https://github.com/smichajlidis/queuing-system.git
+    cd queuing-system
+    ```
 
-3. **Run**: Execute the compiled executable to start the simulator.
+3. **Build using CMake:**
+    ```bash
+    mkdir build
+    cd build
+    cmake ..
+    ```
 
-4. **Usage**: Follow the on-screen prompts to set up the queues, stations, and observe the graphical interface.
+4. **Compile the project:**
+    ```bash
+    make
+    ```
+
+5. **Run the simulator:**
+    ```bash
+    ./main
+    ```
+
 
 ## Usage Instructions
 
