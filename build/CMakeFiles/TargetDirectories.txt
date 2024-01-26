@@ -1,0 +1,3 @@
+/home/bartek/Documents/projekty/queuing-system/build/CMakeFiles/queuing-system.dir
+/home/bartek/Documents/projekty/queuing-system/build/CMakeFiles/edit_cache.dir
+/home/bartek/Documents/projekty/queuing-system/build/CMakeFiles/rebuild_cache.dir
