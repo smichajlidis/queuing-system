@@ -36,7 +36,7 @@ This project is a queue management system simulator developed using the SFML lib
 
 5. **Run the simulator:**
     ```bash
-    ./main
+    ./queuing-system
     ```
 
 
