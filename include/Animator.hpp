@@ -11,7 +11,7 @@ public:
     void notConfirmedTicketAnimation(sf::Text& ticket);
     void start();
 
-    Animator::Animator() : color(sf::Color::White) {}
+    Animator() : color(sf::Color::White) {}
     ~Animator() = default;
 
 };
