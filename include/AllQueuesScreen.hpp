@@ -1,11 +1,13 @@
 #ifndef _ALLQUEUESSCREEN_HPP_
 #define _ALLQUEUESSCREEN_HPP_
+
 #include "Window.hpp"
 #include "Station.hpp"
-#include <SFML/Graphics.hpp>
 #include "Queue.hpp"
+
 #include <vector>
 #include <memory>
+#include <SFML/Graphics.hpp>
 
 class AllQueuesScreen: public Window {
 private:

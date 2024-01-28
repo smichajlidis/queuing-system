@@ -1,5 +1,7 @@
 #include "../include/QueuesManager.hpp"
 
+#include <algorithm>
+
 QueuesManager::QueuesManager() {
     //create queues
     int numberOfQueues {systemCreator("queues",12)};

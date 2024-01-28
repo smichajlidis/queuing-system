@@ -1,8 +1,10 @@
 #ifndef _STATION_HPP_
 #define _STATION_HPP_
-#include <SFML/Graphics.hpp>
-#include <string>
+
 #include "Window.hpp"
+
+#include <string>
+#include <SFML/Graphics.hpp>
 
 class Station: public Window {
 private:

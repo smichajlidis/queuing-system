@@ -1,11 +1,14 @@
 #ifndef _WINDOW_HPP_
 #define _WINDOW_HPP_
+
+#include "Queue.hpp"
+#include "Animator.hpp"
+
 #include <memory>
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "Queue.hpp"
-#include "Animator.hpp"
+
 
 class Window {
 protected:

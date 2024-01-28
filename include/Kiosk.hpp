@@ -1,11 +1,12 @@
 #ifndef _KIOSK_HPP_
 #define _KIOSK_HPP_
+
 #include "Window.hpp"
-#include <SFML/Graphics.hpp>
 #include "Queue.hpp"
-#include <unordered_map>
+
 #include <vector>
 #include <memory>
+#include <SFML/Graphics.hpp>
 
 class Kiosk: public Window {
 public:

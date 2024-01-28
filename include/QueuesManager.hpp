@@ -1,5 +1,6 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
+
 #include "exceptions/InvalidAmountException.hpp"
 #include "exceptions/NotLetterException.hpp"
 #include "exceptions/TooManyCharsException.hpp"
@@ -8,10 +9,10 @@
 #include "Station.hpp"
 #include "Kiosk.hpp"
 #include "AllQueuesScreen.hpp"
+
 #include <memory>
 #include <vector>
 #include <string>
-#include <algorithm>
 #include <iostream>
 #include <limits>
 
