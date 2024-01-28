@@ -6,12 +6,13 @@
 class Animator {
 private:
     sf::Clock clock;
-    sf::Color color; // using to animate sf::Text when ticket is calling but it's not confirmed yet;
+    sf::Color color; // using to animate sf::Text when ticket is calling but it's unconfirmed yet;
 public:
     void notConfirmedTicketAnimation(sf::Text& ticket);
     void start();
-    Animator();
-    ~Animator() {};
+
+    Animator::Animator() : color(sf::Color::White) {}
+    ~Animator() = default;
 
 };
 
