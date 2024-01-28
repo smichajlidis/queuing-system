@@ -7,10 +7,8 @@ AllQueuesScreen::AllQueuesScreen(const sf::VideoMode& mode, const std::string& n
 
 void AllQueuesScreen::processEvents() {
     sf::Event event;
-    if (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
+    if (window.pollEvent(event) && event.type == sf::Event::Closed) {
             window.close();
-        }
     }
 }
 
@@ -49,9 +47,9 @@ void AllQueuesScreen::render() {
         sf::Text actualTicket(activeStations.at(i)->getCurrentTicket(), font, 18);
         actualTicket.setPosition(50*column + 120, 300 + count * 30);
         // animate if the ticket is not confirmed yet
-        if (activeStations.at(i)->getWaitingForCurrentTicket())
+        if (activeStations.at(i)->getWaitingForCurrentTicket()) {
             activeStations.at(i)->notConfirmedTicketAnimation(actualTicket);
-        
+        }
         window.draw(actualTicket);
         
         ++count;
