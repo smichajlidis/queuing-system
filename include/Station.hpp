@@ -7,12 +7,9 @@
 #include <SFML/Graphics.hpp>
 
 class Station: public Window {
-private:
-    sf::RectangleShape nextButton;
-    sf::RectangleShape confirmButton;
-    std::string currentTicket;
-    bool waitingForCurrentTicket {false}; // true when nextButton was clicked but confirmButton hasn't been clicked yet
 public:
+    Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues);
+
     virtual void processEvents() override;
     virtual void render() override;
     void drawCurrentTicket();
@@ -22,7 +19,12 @@ public:
     bool getWaitingForCurrentTicket() const;
     void setWaitingForCurrentTicketAsTrue(); // it is needed to run animation of not confirmed ticket
     void notConfirmedTicketAnimation(sf::Text& ticket); // run Animator class method for not confirmed ticket
-    Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues);
+
+private:
+    sf::RectangleShape nextButton;
+    sf::RectangleShape confirmButton;
+    std::string currentTicket;
+    bool waitingForCurrentTicket {false}; // true when nextButton was clicked but confirmButton hasn't been clicked yet
 };
 
 #endif

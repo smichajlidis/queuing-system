@@ -10,12 +10,15 @@
 #include <SFML/Graphics.hpp>
 
 class AllQueuesScreen: public Window {
-private:
-    std::vector<std::shared_ptr<Station>> activeStations; // vector of all active stations for display datas
 public:
+    AllQueuesScreen(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations)
+    : Window(mode, newTitle, relatedQueues), activeStations(stations) {}
+
     virtual void processEvents() override;
     virtual void render() override;
-    AllQueuesScreen(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations);    
+    
+private:
+    std::vector<std::shared_ptr<Station>> activeStations; // vector of all active stations for display datas
 };
 
 #endif

@@ -17,11 +17,11 @@
 #include <limits>
 
 class QueuesManager {
-private:
-    std::vector<std::shared_ptr<Window>> windows;
-    std::vector<std::shared_ptr<Queue>> queues;
-    std::vector<std::shared_ptr<Station>> stations;
 public:
+    QueuesManager();
+
+    ~QueuesManager() = default;
+
     void addWindow(std::shared_ptr<Window> window);
     void runAllWindows();
     void addQueue(std::shared_ptr<Queue> queue);
@@ -29,8 +29,11 @@ public:
     int systemCreator(const std::string& issue, int limit) const;
     std::shared_ptr<Queue> queuesCreator() const;
     std::shared_ptr<Station> stationsCreator();
-    QueuesManager();
-    ~QueuesManager() {};
+
+private:
+    std::vector<std::shared_ptr<Window>> windows;
+    std::vector<std::shared_ptr<Queue>> queues;
+    std::vector<std::shared_ptr<Station>> stations;
 };
 
 #endif

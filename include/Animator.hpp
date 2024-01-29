@@ -4,15 +4,17 @@
 #include <SFML/Graphics.hpp>
 
 class Animator {
-private:
-    sf::Clock clock;
-    sf::Color color; // using to animate sf::Text when ticket is calling but it's unconfirmed yet;
 public:
+    Animator() : color(sf::Color::White) {}
+
+    ~Animator() = default;
+
     void notConfirmedTicketAnimation(sf::Text& ticket);
     void start();
 
-    Animator() : color(sf::Color::White) {}
-    ~Animator() = default;
+private:
+    sf::Clock clock;
+    sf::Color color; // Used to animate sf::Text when the ticket is called but not confirmed yet.
 
 };
 
