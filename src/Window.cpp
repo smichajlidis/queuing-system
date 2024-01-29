@@ -9,7 +9,7 @@ Window::Window(const sf::VideoMode& mode, const std::string& title, const std::v
     text.setFont(font);
     text.setCharacterSize(20);
     text.setFillColor(sf::Color::White);    
-    }
+}
 
 void Window::addRelatedQueue(std::shared_ptr<Queue> relatedQueue) {
     relatedQueues.push_back(relatedQueue);
@@ -27,7 +27,6 @@ void Window::run() {
 }
 
 void Window::setText(const std::string& content, const sf::Vector2f& position) {
-
     text.setString(content);
     text.setPosition(position);
 }

@@ -1,6 +1,7 @@
 #include "../include/QueuesManager.hpp"
 
 #include <algorithm>
+#include <cctype>
 
 QueuesManager::QueuesManager() {
     //create queues
@@ -63,8 +64,6 @@ int QueuesManager::systemCreator(const std::string& issue, int limit) const {
     } while (repeat);
     return givenNumber;
 }
-
-#include <cctype>
 
 std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
     std::string topic {};
