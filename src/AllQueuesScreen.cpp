@@ -1,10 +1,6 @@
 #include "../include/AllQueuesScreen.hpp"
 #include <iostream>
 
-AllQueuesScreen::AllQueuesScreen(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations)
-    : Window(mode, newTitle, relatedQueues), activeStations(stations) {
-}
-
 void AllQueuesScreen::processEvents() {
     sf::Event event;
     if (window.pollEvent(event) && event.type == sf::Event::Closed) {

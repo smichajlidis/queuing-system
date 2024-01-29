@@ -57,7 +57,7 @@ void Station::render() {
         }
         ++column;
     }
-    text.SetString(waitingForCurrentTicket ? "Waiting for: " : "Current ticket: ");
+    text.setString(waitingForCurrentTicket ? "Waiting for: " : "Current ticket: ");
     text.setPosition(20, 400);
     window.draw(text);
     drawCurrentTicket();
