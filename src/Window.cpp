@@ -1,7 +1,7 @@
 #include "../include/Window.hpp"
 
-Window::Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues)
-    : window(mode, title), relatedQueues(relatedQueues), animator() {
+Window::Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
+    : window(mode, title), related_queues(related_queues), animator() {
 
     if (!font.loadFromFile("../resources/fonts/Lato-Regular.ttf")) {
         // Handling exception
@@ -11,8 +11,8 @@ Window::Window(const sf::VideoMode& mode, const std::string& title, const std::v
     text.setFillColor(sf::Color::White);    
 }
 
-void Window::addRelatedQueue(std::shared_ptr<Queue> relatedQueue) {
-    relatedQueues.push_back(relatedQueue);
+void Window::addRelatedQueue(std::shared_ptr<Queue> related_queue) {
+    related_queues.push_back(related_queue);
 }
 
 bool Window::isOpen() const {

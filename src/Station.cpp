@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-Station::Station(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues)
-    : Window(mode, newTitle, relatedQueues), nextButton (sf::Vector2f(150, 50)),
+Station::Station(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& related_queues)
+    : Window(mode, newTitle, related_queues), nextButton (sf::Vector2f(150, 50)),
     confirmButton (sf::Vector2f(150, 50)) {
 
     title = newTitle;
@@ -48,9 +48,9 @@ void Station::render() {
     
     int column = 1;
 
-    for (size_t i = 0; i < relatedQueues.size(); ++i) {
-        for (size_t j = 0; j < relatedQueues.at(i)->size(); ++j) {
-            sf::Text numberText(relatedQueues.at(i)->getSignature()+std::to_string(relatedQueues.at(i)->getATicket(j)), font, 18);
+    for (size_t i = 0; i < related_queues.size(); ++i) {
+        for (size_t j = 0; j < related_queues.at(i)->size(); ++j) {
+            sf::Text numberText(related_queues.at(i)->getSignature()+std::to_string(related_queues.at(i)->getATicket(j)), font, 18);
             numberText.setFillColor(sf::Color::White);
             numberText.setPosition(50*column, 50 + 30 + j * 20);
             window.draw(numberText);
@@ -87,7 +87,7 @@ void Station::callNextPerson() {
         previousTicketSignature = currentTicket[0];
     }
     do {
-        for (const auto& queue: relatedQueues) {
+        for (const auto& queue: related_queues) {
             if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0')) {
                 foundPreviousQueue = true;
             }

@@ -11,14 +11,14 @@
 
 class AllQueuesScreen: public Window {
 public:
-    AllQueuesScreen(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations)
-    : Window(mode, newTitle, relatedQueues), activeStations(stations) {}
+    AllQueuesScreen(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues, const std::vector<std::shared_ptr<Station>>& stations)
+    : Window(mode, title, related_queues), active_stations (stations) {}
 
     virtual void processEvents() override;
     virtual void render() override;
-    
+
 private:
-    std::vector<std::shared_ptr<Station>> activeStations; // vector of all active stations for display datas
+    std::vector<std::shared_ptr<Station>> active_stations; // vector of all active stations for display datas
 };
 
 #endif

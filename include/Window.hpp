@@ -12,12 +12,12 @@
 
 class Window {
 public:
-    Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues = {});
+    Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues = {});
     
     ~Window() = default;
 
     virtual void setText(const std::string& content, const sf::Vector2f& position);
-    virtual void addRelatedQueue(std::shared_ptr<Queue> relatedQueue);
+    virtual void addRelatedQueue(std::shared_ptr<Queue> related_queue);
     virtual bool isOpen() const;
     virtual void run();
     virtual std::string getTitle() const;
@@ -26,7 +26,7 @@ public:
 
 protected:
     sf::RenderWindow window;
-    std::vector<std::shared_ptr<Queue>> relatedQueues;
+    std::vector<std::shared_ptr<Queue>> related_queues;
     std::string title;
     sf::Font font;
     sf::Text text;

@@ -8,7 +8,7 @@
 
 class Station: public Window {
 public:
-    Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& relatedQueues);
+    Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues);
 
     virtual void processEvents() override;
     virtual void render() override;
