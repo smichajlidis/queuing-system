@@ -1,4 +1,5 @@
 #include "../include/Station.hpp"
+
 #include <iostream>
 
 Station::Station(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& relatedQueues)
@@ -56,10 +57,7 @@ void Station::render() {
         }
         ++column;
     }
-    if (waitingForCurrentTicket)
-        text.setString("Waiting for: ");
-    else
-        text.setString("Current ticket: ");
+    text.SetString(waitingForCurrentTicket ? "Waiting for: " : "Current ticket: ");
     text.setPosition(20, 400);
     window.draw(text);
     drawCurrentTicket();
@@ -85,13 +83,14 @@ void Station::callNextPerson() {
     bool foundPreviousQueue = false;
     int lapCounter {0};
 
-    if (!currentTicket.empty())
+    if (!currentTicket.empty()) {
         previousTicketSignature = currentTicket[0];
-
+    }
     do {
         for (const auto& queue: relatedQueues) {
-            if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0'))
+            if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0')) {
                 foundPreviousQueue = true;
+            }
             else if (foundPreviousQueue && queue->size()) {
                 currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
                 setWaitingForCurrentTicketAsTrue();
