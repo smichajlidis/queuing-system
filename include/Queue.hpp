@@ -6,7 +6,7 @@
 
 class Queue {
 public:
-    Queue(std::string topic = "Queue", char signature = 'Q', int priority = 1);
+    Queue(std::string topic = "Queue", char signature = 'Q', int priority = 1)
     : topic (topic), signature (signature), priority (priority) {}
 
     ~Queue() = default;
@@ -16,9 +16,10 @@ public:
     char getSignature() const;
     void deleteFirstTicket();
     int getATicket(int pos) const; // get a name of existing ticket
-    std::string getTopic() std::vector<int> queue;
+    std::string getTopic() const;
 
 private:
+    std::vector<int> queue;
     std::string topic;
     char signature;
     int queueLength {0};
