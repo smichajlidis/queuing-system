@@ -17,12 +17,15 @@ void AllQueuesScreen::render() {
     
     int column = 1;
 
-    for (size_t i = 0; i < related_queues.size(); ++i) {
-        for (size_t j = 0; j < related_queues.at(i)->size(); ++j) {
-            sf::Text number_text(related_queues.at(i)->getSignature() + std::to_string(related_queues.at(i)->getATicket(j)), font, 18);
+    for (auto &queue: related_queues) {
+        size_t size = queue->getSize();
+        int last = queue->getLastInQueue();
+        for (size_t j = 0; j < size; ++j) {
+            sf::Text number_text(queue->getSignature() + std::to_string(last), font, 18);
             number_text.setFillColor(sf::Color::White);
             number_text.setPosition(50*column, 50 + 30 + j * 20);
             window.draw(number_text);
+            --last;
         }
         ++column;
     }
