@@ -48,12 +48,15 @@ void Station::render() {
     
     int column = 1;
 
-    for (size_t i = 0; i < related_queues.size(); ++i) {
-        for (size_t j = 0; j < related_queues.at(i)->size(); ++j) {
-            sf::Text numberText(related_queues.at(i)->getSignature()+std::to_string(related_queues.at(i)->getATicket(j)), font, 18);
+    for (auto &queue: related_queues) {
+        size_t size = queue->getSize();
+        int last = queue->getLastInQueue();
+        for (size_t j = 0; j < size; ++j) {
+            sf::Text numberText(queue->getSignature()+std::to_string(last), font, 18);
             numberText.setFillColor(sf::Color::White);
             numberText.setPosition(50*column, 50 + 30 + j * 20);
             window.draw(numberText);
+            --last;
         }
         ++column;
     }
@@ -91,8 +94,8 @@ void Station::callNextPerson() {
             if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0')) {
                 foundPreviousQueue = true;
             }
-            else if (foundPreviousQueue && queue->size()) {
-                currentTicket = queue->getSignature() + std::to_string(queue->getATicket(0));
+            else if (foundPreviousQueue && queue->getSize()) {
+                currentTicket = queue->getSignature() + std::to_string(queue->getFirstInQueue());
                 setWaitingForCurrentTicketAsTrue();
                 queue->deleteFirstTicket();
                 return;

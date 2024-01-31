@@ -27,6 +27,8 @@ void Kiosk::render() {
     window.clear();
     int distance {1};
 
+    
+
     for (auto& queue: related_queues) {
         // if you change size, change also buttonBounds dimensions in proceesEvents() method
         sf::RectangleShape ticketButton {sf::Vector2f(200, 50)};
