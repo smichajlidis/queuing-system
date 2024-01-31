@@ -1,29 +1,28 @@
 #ifndef _QUEUE_HPP_
 #define _QUEUE_HPP_
 
-#include <vector>
+#include <queue>
 #include <string>
 
 class Queue {
 public:
-    Queue(std::string topic = "Queue", char signature = 'Q', int priority = 1)
-    : topic (topic), signature (signature), priority (priority) {}
+    Queue(std::string topic = "Queue", char signature = 'Q')
+    : topic (topic), signature (signature) {}
 
     ~Queue() = default;
 
     void pickATicket(); // take a new ticket
-    size_t size() const;
     char getSignature() const;
+    size_t getSize() const;
+    int getLastInQueue() const; // take a number of the last ticket
+    int getFirstInQueue() const;
     void deleteFirstTicket();
-    int getATicket(int pos) const; // get a name of existing ticket
     std::string getTopic() const;
 
 private:
-    std::vector<int> queue;
+    std::queue<int> queue;
     std::string topic;
     char signature;
-    int queueLength {0};
-    int priority;
 };
 
 #endif
