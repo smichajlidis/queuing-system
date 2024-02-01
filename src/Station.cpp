@@ -2,17 +2,14 @@
 
 #include <iostream>
 
-Station::Station(const sf::VideoMode& mode, const std::string& newTitle, const std::vector<std::shared_ptr<Queue>>& related_queues)
-    : Window(mode, newTitle, related_queues), nextButton (sf::Vector2f(150, 50)),
-    confirmButton (sf::Vector2f(150, 50)) {
+Station::Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
+    : Window(mode, title, related_queues), next_button (sf::Vector2f(150, 50)), confirm_button (sf::Vector2f(150, 50)) {
 
-    title = newTitle;
+    next_button.setFillColor(sf::Color::Green);
+    next_button.setPosition(25, 450);
 
-    nextButton.setFillColor(sf::Color::Green);
-    nextButton.setPosition(25, 450);
-
-    confirmButton.setFillColor(sf::Color::Blue);
-    confirmButton.setPosition(225, 450);
+    confirm_button.setFillColor(sf::Color::Blue);
+    confirm_button.setPosition(225, 450);
 
 }
 
@@ -25,14 +22,14 @@ void Station::processEvents() {
         else if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     // Check if the mouse has clicked on a button
-                    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-                    sf::FloatRect nextButtonBounds = nextButton.getGlobalBounds();
-                    sf::FloatRect confirmButtonBounds = confirmButton.getGlobalBounds();
+                    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+                    sf::FloatRect next_button_bounds = next_button.getGlobalBounds();
+                    sf::FloatRect confirm_button_bounds = confirm_button.getGlobalBounds();
 
-                    if (nextButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)) && waitingForCurrentTicket == false) {
+                    if (next_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == false) {
                         callNextPerson();
                     }
-                    else if (confirmButtonBounds.contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)) && waitingForCurrentTicket == true) {
+                    else if (confirm_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == true) {
                         confirmNextPerson();
                     }
                 }
@@ -52,75 +49,75 @@ void Station::render() {
         size_t size = queue->getSize();
         int last = queue->getLastInQueue();
         for (size_t j = 0; j < size; ++j) {
-            sf::Text numberText(queue->getSignature()+std::to_string(last), font, 18);
-            numberText.setFillColor(sf::Color::White);
-            numberText.setPosition(50*column, 50 + 30 + j * 20);
-            window.draw(numberText);
+            sf::Text number_text(queue->getSignature()+std::to_string(last), font, 18);
+            number_text.setFillColor(sf::Color::White);
+            number_text.setPosition(50*column, 50 + 30 + j * 20);
+            window.draw(number_text);
             --last;
         }
         ++column;
     }
-    text.setString(waitingForCurrentTicket ? "Waiting for: " : "Current ticket: ");
+    text.setString(waiting_for_current_ticket ? "Waiting for: " : "Current ticket: ");
     text.setPosition(20, 400);
     window.draw(text);
     drawCurrentTicket();
 
-    window.draw(nextButton);
-    window.draw(confirmButton);
+    window.draw(next_button);
+    window.draw(confirm_button);
 
     window.display();
 }
 
 void Station::drawCurrentTicket() {
-    if (!currentTicket.empty()) {
-        sf::Text numberText(currentTicket, font, 18);
-        numberText.setFillColor(sf::Color::White);
-        numberText.setPosition(200, 400);
-        window.draw(numberText);
+    if (!current_ticket.empty()) {
+        sf::Text number_text(current_ticket, font, 18);
+        number_text.setFillColor(sf::Color::White);
+        number_text.setPosition(200, 400);
+        window.draw(number_text);
     }
 }
 
 void Station::callNextPerson() {
 
-    char previousTicketSignature = '\0';
-    bool foundPreviousQueue = false;
-    int lapCounter {0};
+    char previous_ticket_signature = '\0';
+    bool found_previous_queue = false;
+    int lap_counter {0};
 
-    if (!currentTicket.empty()) {
-        previousTicketSignature = currentTicket[0];
+    if (!current_ticket.empty()) {
+        previous_ticket_signature = current_ticket[0];
     }
     do {
         for (const auto& queue: related_queues) {
-            if (foundPreviousQueue == false && (queue->getSignature() == previousTicketSignature || previousTicketSignature == '\0')) {
-                foundPreviousQueue = true;
+            if (found_previous_queue == false && (queue->getSignature() == previous_ticket_signature || previous_ticket_signature == '\0')) {
+                found_previous_queue = true;
             }
-            else if (foundPreviousQueue && queue->getSize()) {
-                currentTicket = queue->getSignature() + std::to_string(queue->getFirstInQueue());
+            else if (found_previous_queue && queue->getSize()) {
+                current_ticket = queue->getSignature() + std::to_string(queue->getFirstInQueue());
                 setWaitingForCurrentTicketAsTrue();
                 queue->deleteFirstTicket();
                 return;
             }
         }
-        ++lapCounter;
-    } while(lapCounter<2);
+        ++lap_counter;
+    } while(lap_counter<2);
 }
 
 void Station::confirmNextPerson() {
-        waitingForCurrentTicket = false;
+        waiting_for_current_ticket = false;
 
 }
 
 std::string Station::getCurrentTicket() const {
-    return currentTicket;
+    return current_ticket;
 }
 
 bool Station::getWaitingForCurrentTicket() const {
-    return waitingForCurrentTicket;
+    return waiting_for_current_ticket;
 }
 
 void Station::setWaitingForCurrentTicketAsTrue() {
     animator.start();
-    waitingForCurrentTicket = true;
+    waiting_for_current_ticket = true;
 }
 
 void Station::notConfirmedTicketAnimation(sf::Text& ticket) {

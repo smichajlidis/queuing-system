@@ -21,10 +21,10 @@ public:
     void notConfirmedTicketAnimation(sf::Text& ticket); // run Animator class method for not confirmed ticket
 
 private:
-    sf::RectangleShape nextButton;
-    sf::RectangleShape confirmButton;
-    std::string currentTicket;
-    bool waitingForCurrentTicket {false}; // true when nextButton was clicked but confirmButton hasn't been clicked yet
+    sf::RectangleShape next_button;
+    sf::RectangleShape confirm_button;
+    std::string current_ticket;
+    bool waiting_for_current_ticket {false}; // true when nextButton was clicked but confirmButton hasn't been clicked yet
 };
 
 #endif
