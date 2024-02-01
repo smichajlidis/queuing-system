@@ -1,7 +1,5 @@
 #include "../include/Station.hpp"
 
-#include <iostream>
-
 Station::Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
     : Window(mode, title, related_queues), next_button (sf::Vector2f(150, 50)), confirm_button (sf::Vector2f(150, 50)) {
 
@@ -10,7 +8,6 @@ Station::Station(const sf::VideoMode& mode, const std::string& title, const std:
 
     confirm_button.setFillColor(sf::Color::Blue);
     confirm_button.setPosition(225, 450);
-
 }
 
 void Station::processEvents() {
@@ -20,19 +17,19 @@ void Station::processEvents() {
             window.close();
         }
         else if (event.type == sf::Event::MouseButtonPressed) {
-                if (event.mouseButton.button == sf::Mouse::Left) {
-                    // Check if the mouse has clicked on a button
-                    sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
-                    sf::FloatRect next_button_bounds = next_button.getGlobalBounds();
-                    sf::FloatRect confirm_button_bounds = confirm_button.getGlobalBounds();
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                // Check if the mouse has clicked on a button
+                sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+                sf::FloatRect next_button_bounds = next_button.getGlobalBounds();
+                sf::FloatRect confirm_button_bounds = confirm_button.getGlobalBounds();
 
-                    if (next_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == false) {
-                        callNextPerson();
-                    }
-                    else if (confirm_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == true) {
-                        confirmNextPerson();
-                    }
+                if (next_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == false) {
+                    callNextPerson();
                 }
+                else if (confirm_button_bounds.contains(static_cast<float>(mouse_position.x), static_cast<float>(mouse_position.y)) && waiting_for_current_ticket == true) {
+                    confirmNextPerson();
+                }
+            }
         } 
     }
 }
@@ -78,7 +75,6 @@ void Station::drawCurrentTicket() {
 }
 
 void Station::callNextPerson() {
-
     char previous_ticket_signature = '\0';
     bool found_previous_queue = false;
     int lap_counter {0};
@@ -103,8 +99,7 @@ void Station::callNextPerson() {
 }
 
 void Station::confirmNextPerson() {
-        waiting_for_current_ticket = false;
-
+    waiting_for_current_ticket = false;
 }
 
 std::string Station::getCurrentTicket() const {

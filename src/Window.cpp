@@ -1,7 +1,7 @@
 #include "../include/Window.hpp"
 
 Window::Window(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
-    : window(mode, title), related_queues(related_queues), animator() {
+    : window(mode, title), related_queues(related_queues), title(title), animator() {
 
     if (!font.loadFromFile("../resources/fonts/Lato-Regular.ttf")) {
         // Handling exception

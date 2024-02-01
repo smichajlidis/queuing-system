@@ -8,8 +8,6 @@ void AllQueuesScreen::processEvents() {
     }
 }
 
-#include <iostream>
-
 void AllQueuesScreen::render() {
     window.clear();
 
@@ -38,10 +36,6 @@ void AllQueuesScreen::render() {
 
     column = 1;
     int count = 0;
-
-    for (auto &stations: active_stations) {
-        std::cout << stations->getTitle() << std::endl;
-    }
 
     for (size_t i = 0; i < active_stations.size(); ++i) {
         sf::Text station_topic(active_stations.at(i)->getTitle(), font, 18);
