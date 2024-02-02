@@ -14,8 +14,8 @@ public:
     AllQueuesScreen(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues, const std::vector<std::shared_ptr<Station>>& stations)
     : Window(mode, title, related_queues), active_stations (stations) {}
 
-    virtual void processEvents() override;
-    virtual void render() override;
+    void processEvents() override;
+    void render() override;
 
 private:
     std::vector<std::shared_ptr<Station>> active_stations; // vector of all active stations for display datas

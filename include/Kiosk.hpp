@@ -13,8 +13,8 @@ public:
     Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues)
     :  Window(mode, title, queues) {}
 
-    virtual void processEvents() override;
-    virtual void render() override;
+    void processEvents() override;
+    void render() override;
     void newTicket(Queue& queue) const;    
 };
 

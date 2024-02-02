@@ -10,8 +10,8 @@ class Station: public Window {
 public:
     Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues);
 
-    virtual void processEvents() override;
-    virtual void render() override;
+    void processEvents() override;
+    void render() override;
     void drawCurrentTicket();
     std::string getCurrentTicket() const;
     void callNextPerson();
