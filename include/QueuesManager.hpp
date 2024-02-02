@@ -1,9 +1,6 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
 
-#include "exceptions/InvalidAmountException.hpp"
-#include "exceptions/NotLetterException.hpp"
-#include "exceptions/TooManyCharsException.hpp"
 #include "Queue.hpp"
 #include "Window.hpp"
 #include "Station.hpp"

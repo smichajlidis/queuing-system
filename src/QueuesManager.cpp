@@ -46,22 +46,21 @@ void QueuesManager::addWindow(std::shared_ptr<Window> window) {
 
 int QueuesManager::systemCreator(const std::string& issue, int limit) const {
     std::cout << "How many "<< issue << " do you want to create?" << std::endl;
+
     bool repeat {false};
     int givenNumber {};
+
     do {
         repeat = false;
-        try {
-            std::cin >> givenNumber;
-            if (std::cin.fail() || givenNumber > limit || givenNumber < 1) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                throw InvalidAmountException(limit);
-            }
-        } catch (const InvalidAmountException &ex) {
-            std::cerr << ex.what() << std::endl;
+        std::cin >> givenNumber;
+        if (std::cin.fail() || givenNumber > limit || givenNumber < 1) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             repeat = true;
+            std::cerr << "Please give a number from 1 to " << limit << std::endl;
         }
     } while (repeat);
+
     return givenNumber;
 }
 
@@ -70,16 +69,14 @@ std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
     std::string signatureTemp {};
     char signature {};
     bool repeat {false};
+
     std::cout << "Give a topic of the queue - no more than 20 characters: " << std::endl;
     do {
         repeat = false;
-        try {
-            std::cin >> topic;
-            if (topic.size() > 20)
-                throw TooManyCharsException();
-        } catch (const TooManyCharsException &ex) {
-            std::cerr << ex.what() << std::endl;
+        std::cin >> topic;
+        if (topic.size() > 20) {
             repeat = true;
+            std::cerr << "Given too many chars" << std::endl;
         }
     } while (repeat);
 
@@ -88,14 +85,12 @@ std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
         repeat = false;
         std::cin >> signatureTemp;
         signature = signatureTemp[0];
-        try {
-            if (!std::isalpha(signature))
-                throw NotLetterException();
-        } catch (const NotLetterException &ex) {
-            std::cerr << ex.what() << std::endl;
+        if (!std::isalpha(signature)) {
             repeat = true;
+            std::cerr << "You have to give a letter" << std::endl;
         }
     } while (repeat);
+
     if (std::islower(signature))
         signature = std::toupper(signature);
     return std::make_shared<Queue>(topic, signature);
@@ -107,32 +102,31 @@ void QueuesManager::addStation(std::shared_ptr<Station> station) {
 }
 
 std::shared_ptr<Station> QueuesManager::stationsCreator() {
-    size_t choice = 0;
+    size_t choice {0};
     std::vector<std::shared_ptr<Queue>> allQueues = queues;
     std::vector<std::shared_ptr<Queue>> relatedQueues;
+
     do {
-        int count = 1;
-        for (auto queue: allQueues) {
-            std::cout << "\t" << count << ".\t" << allQueues.at(count-1)->getTopic() << std::endl;
+        int count {1};
+        for (auto &queue: allQueues) {
+            std::cout << "\t" << count << ".\t" << queue->getTopic() << std::endl;
             ++count;
         }
-        if (!relatedQueues.empty())
-            std::cout << "\t0.\tAll related queues have related" << std::endl; 
+
+        if (!relatedQueues.empty()) {
+            std::cout << "\t0.\tAll related queues have related" << std::endl;
+        }
         std::cout << "\nWhich queues do you want to relate with?" << std::endl;
-        try {
-            std::cin >> choice;
-            if (std::cin.fail() || choice > allQueues.size() || (choice == 0 && relatedQueues.empty())) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                throw InvalidAmountException(allQueues.size());
-            }
-            else if (choice) {
-                relatedQueues.push_back(allQueues.at(choice-1));
-                auto toRemove = allQueues.begin() + (choice - 1);
-                allQueues.erase(toRemove);
-            }
-        } catch (const InvalidAmountException &ex) {
-            std::cerr << ex.what() << std::endl;
+        std::cin >> choice;
+        if (std::cin.fail() || choice > allQueues.size() || (choice == 0 && relatedQueues.empty())) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cerr << "Please give a number from 1 to " << count << std::endl;
+        }
+        else if (choice) {
+            relatedQueues.push_back(allQueues.at(choice - 1));
+            auto toRemove = allQueues.begin() + (choice - 1);
+            allQueues.erase(toRemove);
         }
     } while (choice);
 
@@ -140,8 +134,10 @@ std::shared_ptr<Station> QueuesManager::stationsCreator() {
     std::string name;
     std::cin.ignore();
     std::getline(std::cin, name);
+
     std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), name, relatedQueues);
     addWindow(station);
     std::cout << name << " created\n" << std::endl;
+
     return station;
 }
