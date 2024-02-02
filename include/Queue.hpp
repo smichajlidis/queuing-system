@@ -6,7 +6,7 @@
 
 class Queue {
 public:
-    Queue(std::string topic = "Queue", char signature = 'Q')
+    Queue(const std::string &topic = "Queue", char signature = 'Q')
     : topic(topic), signature(signature), counter (0) {}
 
     ~Queue() = default;
