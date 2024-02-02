@@ -1,7 +1,7 @@
 #include "../include/Queue.hpp"
 
 void Queue::pickATicket() {
-    queue.push(queue.size()+1);
+    queue.push(++counter);
 }
 
 char Queue::getSignature() const {
