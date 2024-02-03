@@ -1,5 +1,5 @@
-#include "include/QueuesManager.hpp"
+#include "include/WindowsCreator.hpp"
 
 int main() {
-    QueuesManager queuesManager {};
+    WindowsCreator windows_creator {};
 }
