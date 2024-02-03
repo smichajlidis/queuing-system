@@ -10,9 +10,12 @@ QueuesManager::QueuesManager() {
         addQueue(queuesCreator());
     //create stations
     int numberOfStations {systemCreator("stations",9)};
+    std::vector<std::shared_ptr<Station>> stations {};
     for (int i = 0; i < numberOfStations; ++i) {
         std::cout << "\t<<STATION CREATOR>>\n" << std::endl;
-        addStation(stationsCreator());
+        std::shared_ptr<Station> newStation = stationsCreator();
+        windows_manager.addWindow(newStation);
+        stations.push_back(newStation);
     }
 
     std::shared_ptr<Kiosk> kiosk = std::make_shared<Kiosk>(sf::VideoMode(400,600), "Kiosk nr 1", queues);
@@ -81,10 +84,6 @@ std::shared_ptr<Queue> QueuesManager::queuesCreator() const {
     
 }
 
-void QueuesManager::addStation(std::shared_ptr<Station> station) {
-    stations.push_back(station);
-}
-
 std::shared_ptr<Station> QueuesManager::stationsCreator() {
     size_t choice {0};
     std::vector<std::shared_ptr<Queue>> allQueues = queues;
@@ -120,7 +119,6 @@ std::shared_ptr<Station> QueuesManager::stationsCreator() {
     std::getline(std::cin, name);
 
     std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), name, relatedQueues);
-    windows_manager.addWindow(station);
     std::cout << name << " created\n" << std::endl;
 
     return station;

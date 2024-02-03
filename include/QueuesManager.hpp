@@ -21,7 +21,6 @@ public:
     ~QueuesManager() = default;
 
     void addQueue(std::shared_ptr<Queue> queue);
-    void addStation(std::shared_ptr<Station> station);
     int systemCreator(const std::string& issue, int limit) const;
     std::shared_ptr<Queue> queuesCreator() const;
     std::shared_ptr<Station> stationsCreator();
@@ -29,7 +28,6 @@ public:
 private:
     WindowsManager windows_manager;
     std::vector<std::shared_ptr<Queue>> queues;
-    std::vector<std::shared_ptr<Station>> stations;
 };
 
 #endif
