@@ -16,32 +16,16 @@ QueuesManager::QueuesManager() {
     }
 
     std::shared_ptr<Kiosk> kiosk = std::make_shared<Kiosk>(sf::VideoMode(400,600), "Kiosk nr 1", queues);
-    addWindow(kiosk);
+    windows_manager.addWindow(kiosk);
 
     std::shared_ptr<AllQueuesScreen> allQueuesScreen = std::make_shared<AllQueuesScreen>(sf::VideoMode(600,400), "All queues screen", queues, stations);
-    addWindow(allQueuesScreen);
+    windows_manager.addWindow(allQueuesScreen);
 
-    runAllWindows();
-
-}
-
-void QueuesManager::runAllWindows() {
-    while (std::any_of(windows.begin(), windows.end(), [](const auto& window) { return window->isOpen(); })) {
-        for (auto& window : windows) {
-            window->run();
-            if (!window->isOpen()) {
-                return;
-            }
-        }
-    }
+    windows_manager.runAllWindows();
 }
 
 void QueuesManager::addQueue(std::shared_ptr<Queue> queue) {
     queues.push_back(queue);
-}
-
-void QueuesManager::addWindow(std::shared_ptr<Window> window) {
-    windows.push_back(window);
 }
 
 int QueuesManager::systemCreator(const std::string& issue, int limit) const {
@@ -136,7 +120,7 @@ std::shared_ptr<Station> QueuesManager::stationsCreator() {
     std::getline(std::cin, name);
 
     std::shared_ptr<Station> station = std::make_shared<Station>(sf::VideoMode(400, 600), name, relatedQueues);
-    addWindow(station);
+    windows_manager.addWindow(station);
     std::cout << name << " created\n" << std::endl;
 
     return station;

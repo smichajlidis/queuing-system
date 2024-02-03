@@ -6,6 +6,7 @@
 #include "Station.hpp"
 #include "Kiosk.hpp"
 #include "AllQueuesScreen.hpp"
+#include "WindowsManager.hpp"
 
 #include <memory>
 #include <vector>
@@ -19,8 +20,6 @@ public:
 
     ~QueuesManager() = default;
 
-    void addWindow(std::shared_ptr<Window> window);
-    void runAllWindows();
     void addQueue(std::shared_ptr<Queue> queue);
     void addStation(std::shared_ptr<Station> station);
     int systemCreator(const std::string& issue, int limit) const;
@@ -28,7 +27,7 @@ public:
     std::shared_ptr<Station> stationsCreator();
 
 private:
-    std::vector<std::shared_ptr<Window>> windows;
+    WindowsManager windows_manager;
     std::vector<std::shared_ptr<Queue>> queues;
     std::vector<std::shared_ptr<Station>> stations;
 };
