@@ -12,7 +12,7 @@ Window::Window(const sf::VideoMode& mode, const std::string& title, const std::v
 }
 
 void Window::addRelatedQueue(std::shared_ptr<Queue> related_queue) {
-    related_queues.push_back(related_queue);
+    related_queues.push_back(std::move(related_queue));
 }
 
 bool Window::isOpen() const {
