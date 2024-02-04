@@ -3,6 +3,7 @@
 
 #include "Queue.hpp"
 #include "Animator.hpp"
+#include "TextParameters.hpp"
 
 #include <memory>
 #include <vector>
@@ -30,6 +31,7 @@ protected:
     sf::Font font;
     sf::Text text;
     Animator animator;
+    TextParameters text_parameters;
 };
 
 #endif

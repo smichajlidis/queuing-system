@@ -37,7 +37,7 @@ void Station::processEvents() {
 void Station::render() {
     window.clear();
     text.setString("List of waiting tickets: ");
-    text.setPosition(20, 20);
+    text.setPosition(text_parameters.getStartingPosition(), text_parameters.getStartingPosition());
     window.draw(text);
     
     int column = 1;
@@ -46,16 +46,16 @@ void Station::render() {
         size_t size = queue->getSize();
         int last = queue->getLastInQueue();
         for (size_t j = 0; j < size; ++j) {
-            sf::Text number_text(queue->getSignature()+std::to_string(last), font, 18);
+            sf::Text number_text(queue->getSignature()+std::to_string(last), font, text_parameters.getFontSize());
             number_text.setFillColor(sf::Color::White);
-            number_text.setPosition(50*column, 50 + 30 + j * 20);
+            number_text.setPosition(text_parameters.getSpaceBetweenColumns() * column, text_parameters.getSpaceBetweenLines() + j * text_parameters.getFontSize());
             window.draw(number_text);
             --last;
         }
         ++column;
     }
     text.setString(waiting_for_current_ticket ? "Waiting for: " : "Current ticket: ");
-    text.setPosition(20, 400);
+    text.setPosition(text_parameters.getStartingPosition(), 400);
     window.draw(text);
     drawCurrentTicket();
 

@@ -12,7 +12,7 @@ void AllQueuesScreen::render() {
     window.clear();
 
     text.setString("List of waiting tickets: ");
-    text.setPosition(20, 20);
+    text.setPosition(text_parameters.getStartingPosition(), text_parameters.getStartingPosition());
     window.draw(text);
     
     int column = 1;
@@ -23,7 +23,7 @@ void AllQueuesScreen::render() {
         for (size_t j = 0; j < size; ++j) {
             sf::Text number_text(queue->getSignature() + std::to_string(last), font, 18);
             number_text.setFillColor(sf::Color::White);
-            number_text.setPosition(50*column, 50 + 30 + j * 20);
+            number_text.setPosition(text_parameters.getSpaceBetweenColumns()*column, text_parameters.getSpaceBetweenLines() + j * 20);
             window.draw(number_text);
             --last;
         }
@@ -31,7 +31,7 @@ void AllQueuesScreen::render() {
     }
 
     text.setString("List of stations: ");
-    text.setPosition(20, 250);
+    text.setPosition(text_parameters.getStartingPosition(), 250);
     window.draw(text);
 
     column = 1;
@@ -40,11 +40,11 @@ void AllQueuesScreen::render() {
     for (size_t i = 0; i < active_stations.size(); ++i) {
         sf::Text station_topic(active_stations.at(i)->getTitle(), font, 18);
         station_topic.setFillColor(sf::Color::White);
-        station_topic.setPosition(50*column + 30, 300 + count * 30);
+        station_topic.setPosition(text_parameters.getSpaceBetweenColumns() * column + 30, 300 + count * 30);
         window.draw(station_topic);
 
         sf::Text actual_ticket(active_stations.at(i)->getCurrentTicket(), font, 18);
-        actual_ticket.setPosition(50 * column + 120, 300 + count * 30);
+        actual_ticket.setPosition(text_parameters.getSpaceBetweenColumns() * column + 120, 300 + count * 30);
         // animate if the ticket is not confirmed yet
         if (active_stations.at(i)->getWaitingForCurrentTicket()) {
             active_stations.at(i)->notConfirmedTicketAnimation(actual_ticket);
