@@ -19,13 +19,6 @@ bool Window::isOpen() const {
     return window.isOpen();
 }
 
-void Window::run() {
-    if (window.isOpen()) {
-        processEvents();
-        render();
-    }
-}
-
 void Window::setText(const std::string& content, const sf::Vector2f& position) {
     text.setString(content);
     text.setPosition(position);

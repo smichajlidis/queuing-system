@@ -19,7 +19,6 @@ public:
     virtual void setText(const std::string& content, const sf::Vector2f& position);
     virtual void addRelatedQueue(std::shared_ptr<Queue> related_queue);
     virtual bool isOpen() const;
-    virtual void run();
     virtual std::string getTitle() const;
     virtual void processEvents() = 0;
     virtual void render() = 0;
