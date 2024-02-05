@@ -4,6 +4,7 @@
 #include "Queue.hpp"
 #include "Animator.hpp"
 #include "TextParameters.hpp"
+#include "WindowGrid.hpp"
 
 #include <memory>
 #include <vector>
@@ -32,6 +33,7 @@ protected:
     sf::Text text;
     Animator animator;
     TextParameters text_parameters;
+    WindowGrid window_grid;
 };
 
 #endif
