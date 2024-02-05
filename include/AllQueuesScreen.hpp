@@ -11,8 +11,7 @@
 
 class AllQueuesScreen: public Window {
 public:
-    AllQueuesScreen(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues, const std::vector<std::shared_ptr<Station>>& stations)
-    : Window(mode, title, related_queues), active_stations (stations) {}
+    AllQueuesScreen(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues, const std::vector<std::shared_ptr<Station>>& stations);
 
     void processEvents() override;
     void render() override;
