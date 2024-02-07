@@ -3,11 +3,17 @@
 Station::Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
     : Window(mode, title, related_queues), next_button (sf::Vector2f(150, 50)), confirm_button (sf::Vector2f(150, 50)) {
 
+    window_grid.setRows(24, 
+    20.0, 30.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0,
+    20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0,
+    20.0, 20.0, 20.0, 20.0);
+    window_grid.setColumns(10, 20.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0);
+
     next_button.setFillColor(sf::Color::Green);
-    next_button.setPosition(25, 450);
+    next_button.setPosition(window_grid.getColumn(1), window_grid.getRow(22));
 
     confirm_button.setFillColor(sf::Color::Blue);
-    confirm_button.setPosition(225, 450);
+    confirm_button.setPosition(window_grid.getColumn(5), window_grid.getRow(22));
 }
 
 void Station::processEvents() {
@@ -37,25 +43,25 @@ void Station::processEvents() {
 void Station::render() {
     window.clear();
     text.setString("List of waiting tickets: ");
-    text.setPosition(text_parameters.getStartingPosition(), text_parameters.getStartingPosition());
+    text.setPosition(window_grid.getColumn(1), window_grid.getRow(1));
     window.draw(text);
     
     int column = 1;
 
     for (auto &queue: related_queues) {
-        size_t size = queue->getSize();
+        int size = static_cast<int>(queue->getSize());
         int last = queue->getLastInQueue();
-        for (size_t j = 0; j < size; ++j) {
-            sf::Text number_text(queue->getSignature()+std::to_string(last), font, text_parameters.getFontSize());
+        for (int i = 1; i <= std::min(size, 16); ++i) {
+            sf::Text number_text(((i < 16) ? queue->getSignature() + std::to_string(last) : "(...)"), font, 18);
             number_text.setFillColor(sf::Color::White);
-            number_text.setPosition(text_parameters.getSpaceBetweenColumns() * column, text_parameters.getSpaceBetweenLines() + j * text_parameters.getFontSize());
+            number_text.setPosition(window_grid.getColumn(column), window_grid.getRow(i+1));
             window.draw(number_text);
             --last;
         }
         ++column;
     }
     text.setString(waiting_for_current_ticket ? "Waiting for: " : "Current ticket: ");
-    text.setPosition(text_parameters.getStartingPosition(), 400);
+    text.setPosition(window_grid.getColumn(1), window_grid.getRow(19));
     window.draw(text);
     drawCurrentTicket();
 
@@ -69,7 +75,7 @@ void Station::drawCurrentTicket() {
     if (!current_ticket.empty()) {
         sf::Text number_text(current_ticket, font, 18);
         number_text.setFillColor(sf::Color::White);
-        number_text.setPosition(200, 400);
+        number_text.setPosition(window_grid.getColumn(4), window_grid.getRow(19));
         window.draw(number_text);
     }
 }
