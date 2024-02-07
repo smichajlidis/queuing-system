@@ -3,14 +3,12 @@
 
 #include "Queue.hpp"
 #include "Animator.hpp"
-#include "TextParameters.hpp"
 #include "WindowGrid.hpp"
 
 #include <memory>
 #include <vector>
 #include <string>
 #include <SFML/Graphics.hpp>
-
 
 class Window {
 public:
@@ -32,7 +30,6 @@ protected:
     sf::Font font;
     sf::Text text;
     Animator animator;
-    TextParameters text_parameters;
     WindowGrid window_grid;
 };
 
