@@ -30,13 +30,13 @@ void AllQueuesScreen::render() {
 
     for (auto &queue: related_queues) {
         int size = static_cast<int>(queue->getSize());
-        int last = queue->getLastInQueue();
+        int counter = queue->getFirstInQueue();
         for (int i = 1; i <= std::min(size, 10); ++i) {
-            sf::Text number_text(((i < 10) ? queue->getSignature() + std::to_string(last) : "(...)"), font, 18);
+            sf::Text number_text(((i < 10) ? queue->getSignature() + std::to_string(counter) : "(...)"), font, 18);
             number_text.setFillColor(sf::Color::White);
             number_text.setPosition(window_grid.getColumn(column), window_grid.getRow(i+1));
             window.draw(number_text);
-            --last;
+            ++counter;
         }
         ++column;
     }
