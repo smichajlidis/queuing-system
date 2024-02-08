@@ -14,16 +14,16 @@ public:
     void pickATicket(); // take a new ticket
     char getSignature() const;
     size_t getSize() const;
-    int getLastInQueue() const; // take a number of the last ticket
-    int getFirstInQueue() const;
+    std::uint32_t getLastInQueue() const; // take a number of the last ticket
+    std::uint32_t getFirstInQueue() const;
     void deleteFirstTicket();
     std::string getTopic() const;
 
 private:
-    std::queue<int> queue;
+    std::queue<std::uint32_t> queue;
     std::string topic;
     char signature;
-    int counter;
+    std::uint32_t counter;
 };
 
 #endif

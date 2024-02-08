@@ -2,6 +2,7 @@
 #define _WINDOWGRID_HPP_
 
 #include <vector>
+#include <cstdint>
 
 class WindowGrid {
 public:
@@ -9,10 +10,10 @@ public:
 
     ~WindowGrid() = default;
 
-    void setRows(int count, ...);
-    void setColumns(int count, ...);
-    float getColumn(int index) const;
-    float getRow(int index) const;
+    void setRows(std::uint32_t count, ...);
+    void setColumns(std::uint32_t count, ...);
+    float getColumn(std::uint32_t index) const;
+    float getRow(std::uint32_t index) const;
 
 private:
     std::vector<float> rows;

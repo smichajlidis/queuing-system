@@ -18,7 +18,7 @@ void Kiosk::processEvents() {
         else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
 
-            int counter = 1;
+            std::uint32_t counter = 1;
 
             for (auto& queue : related_queues) {
                 const sf::FloatRect buttonBounds(window_grid.getColumn(1), window_grid.getRow(counter), window_grid.getColumn(4), window_grid.getRow(1));
@@ -34,7 +34,7 @@ void Kiosk::processEvents() {
 
 void Kiosk::render() {
     window.clear();
-    int counter {1};
+    std::uint32_t counter {1};
 
     
 

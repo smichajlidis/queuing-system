@@ -46,12 +46,12 @@ void Station::render() {
     text.setPosition(window_grid.getColumn(1), window_grid.getRow(1));
     window.draw(text);
     
-    int column = 1;
+    std::uint32_t column = 1;
 
     for (auto &queue: related_queues) {
-        int size = static_cast<int>(queue->getSize());
-        int counter = queue->getFirstInQueue();
-        for (int i = 1; i <= std::min(size, 16); ++i) {
+        std::uint32_t size = static_cast<std::uint32_t>(queue->getSize());
+        std::uint32_t counter = queue->getFirstInQueue();
+        for (std::uint32_t i = 1; i <= std::min(size, static_cast<std::uint32_t>(16)); ++i) {
             sf::Text number_text(((i < 16) ? queue->getSignature() + std::to_string(counter) : "(...)"), font, 18);
             number_text.setFillColor(sf::Color::White);
             number_text.setPosition(window_grid.getColumn(column), window_grid.getRow(i+1));
@@ -83,7 +83,7 @@ void Station::drawCurrentTicket() {
 void Station::callNextPerson() {
     char previous_ticket_signature = '\0';
     bool found_previous_queue = false;
-    int lap_counter {0};
+    std::uint32_t lap_counter {0};
 
     if (!current_ticket.empty()) {
         previous_ticket_signature = current_ticket[0];

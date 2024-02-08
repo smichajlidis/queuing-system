@@ -26,12 +26,12 @@ void AllQueuesScreen::render() {
     text.setPosition(window_grid.getColumn(1), window_grid.getColumn(1));
     window.draw(text);
 
-    int column {1};
+    std::uint32_t column {1};
 
     for (auto &queue: related_queues) {
-        int size = static_cast<int>(queue->getSize());
-        int counter = queue->getFirstInQueue();
-        for (int i = 1; i <= std::min(size, 10); ++i) {
+        std::uint32_t size = static_cast<std::uint32_t>(queue->getSize());
+        std::uint32_t counter = queue->getFirstInQueue();
+        for (std::uint32_t i = 1; i <= std::min(size, static_cast<std::uint32_t>(10)); ++i) {
             sf::Text number_text(((i < 10) ? queue->getSignature() + std::to_string(counter) : "(...)"), font, 18);
             number_text.setFillColor(sf::Color::White);
             number_text.setPosition(window_grid.getColumn(column), window_grid.getRow(i+1));
@@ -46,7 +46,7 @@ void AllQueuesScreen::render() {
     window.draw(text);
 
     column = 1;
-    int line {1};
+    std::uint32_t line {1};
 
     for (size_t i = 1; i <= active_stations.size(); ++i) {
         sf::Text station_topic(active_stations.at(i-1)->getTitle(), font, 18);

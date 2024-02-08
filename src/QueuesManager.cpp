@@ -7,8 +7,8 @@
 
 QueuesManager::QueuesManager() {
     //create queues
-    int number_of_queues {inputValidator("queues",12)};
-    for (int i = 0; i < number_of_queues; ++i) {
+    std::uint32_t number_of_queues {inputValidator("queues",12)};
+    for (std::uint32_t i = 0; i < number_of_queues; ++i) {
         queues.push_back(createQueue());
     }
 }
@@ -50,11 +50,11 @@ std::vector<std::shared_ptr<Queue>> QueuesManager::getQueues() const {
     return queues;
 }
 
-int QueuesManager::inputValidator(const std::string& issue, int limit) const {
+std::uint32_t QueuesManager::inputValidator(const std::string& issue, std::uint32_t limit) const {
     std::cout << "How many "<< issue << " do you want to create?" << std::endl;
 
     bool repeat {false};
-    int givenNumber {};
+    std::uint32_t givenNumber {};
 
     do {
         repeat = false;

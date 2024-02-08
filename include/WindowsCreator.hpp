@@ -20,7 +20,7 @@ public:
     std::shared_ptr<Window> createKiosk();
     std::shared_ptr<Window> createAllQueuesScreen(const std::vector<std::shared_ptr<Station>>& stations);
     std::shared_ptr<Station> createStation();
-    int inputValidator(const std::string& issue, int limit) const;
+    std::uint32_t inputValidator(const std::string& issue, std::uint32_t limit) const;
 
 private:
     WindowsManager windows_manager;

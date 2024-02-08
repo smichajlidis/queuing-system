@@ -20,10 +20,10 @@ size_t Queue::getSize() const {
     return queue.size();
 }
 
-int Queue::getLastInQueue() const {
+std::uint32_t Queue::getLastInQueue() const {
     return (!queue.empty() ? queue.back() : 0);
 }
 
-int Queue::getFirstInQueue() const {
+std::uint32_t Queue::getFirstInQueue() const {
     return (!queue.empty() ? queue.front() : 0);
 }

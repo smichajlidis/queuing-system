@@ -15,7 +15,7 @@ public:
 
     std::shared_ptr<Queue> createQueue() const;
     std::vector<std::shared_ptr<Queue>> getQueues() const;
-    int inputValidator(const std::string& issue, int limit) const;
+    std::uint32_t inputValidator(const std::string& issue, std::uint32_t limit) const;
 
 private:
     std::vector<std::shared_ptr<Queue>> queues;

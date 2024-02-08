@@ -4,10 +4,10 @@
 #include <limits>
 
 WindowsCreator::WindowsCreator() {
-    int numberOfStations {inputValidator("stations",9)};
+    std::uint32_t numberOfStations {inputValidator("stations",9)};
     std::vector<std::shared_ptr<Station>> stations {};
 
-    for (int i = 0; i < numberOfStations; ++i) {
+    for (std::uint32_t i = 0; i < numberOfStations; ++i) {
         std::cout << "\t::STATION CREATOR::\n" << std::endl;
         std::shared_ptr<Station> new_station = createStation();
         windows_manager.addWindow(new_station);
@@ -34,7 +34,7 @@ std::shared_ptr<Station> WindowsCreator::createStation() {
     std::vector<std::shared_ptr<Queue>> related_queues;
 
     do {
-        int count {1};
+        std::uint32_t count {1};
         for (auto &queue: allQueues) {
             std::cout << "\t" << count << ".\t" << queue->getTopic() << std::endl;
             ++count;
@@ -68,11 +68,11 @@ std::shared_ptr<Station> WindowsCreator::createStation() {
     return station;
 }
 
-int WindowsCreator::inputValidator(const std::string& issue, int limit) const {
+std::uint32_t WindowsCreator::inputValidator(const std::string& issue, std::uint32_t limit) const {
     std::cout << "How many "<< issue << " do you want to create?" << std::endl;
 
     bool repeat {false};
-    int givenNumber {};
+    std::uint32_t givenNumber {};
 
     do {
         repeat = false;
