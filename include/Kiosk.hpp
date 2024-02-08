@@ -10,8 +10,7 @@
 
 class Kiosk: public Window {
 public:
-    Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues)
-    :  Window(mode, title, queues) {}
+    Kiosk(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& queues);
 
     void processEvents() override;
     void render() override;
