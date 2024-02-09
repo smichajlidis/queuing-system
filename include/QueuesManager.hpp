@@ -1,7 +1,7 @@
 #ifndef _QUEUESMANAGER_HPP_
 #define _QUEUESMANAGER_HPP_
 
-#include "Queue.hpp"
+class Queue;
 
 #include <memory>
 #include <vector>

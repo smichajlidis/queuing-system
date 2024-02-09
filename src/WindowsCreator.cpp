@@ -1,4 +1,8 @@
 #include "../include/WindowsCreator.hpp"
+#include "../include/Kiosk.hpp"
+#include "../include/AllQueuesScreen.hpp"
+#include "../include/Queue.hpp"
+#include "../include/Station.hpp"
 
 #include <iostream>
 #include <limits>

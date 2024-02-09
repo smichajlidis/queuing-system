@@ -1,4 +1,5 @@
 #include "../include/WindowsManager.hpp"
+#include "../include/Window.hpp"
 
 void WindowsManager::addWindow(std::shared_ptr<Window> window) {
     windows.push_back(window);

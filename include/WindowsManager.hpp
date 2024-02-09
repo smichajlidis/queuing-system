@@ -1,7 +1,7 @@
 #ifndef _WINDOWSMANAGER_HPP_
 #define _WINDOWSMANAGER_HPP_
 
-#include "Window.hpp"
+class Window;
 
 #include <memory>
 #include <vector>

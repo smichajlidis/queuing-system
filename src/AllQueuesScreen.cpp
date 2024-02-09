@@ -1,4 +1,6 @@
 #include "../include/AllQueuesScreen.hpp"
+#include "../include/Queue.hpp"
+#include "../include/Station.hpp"
 
 #include <algorithm>
 

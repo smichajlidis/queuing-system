@@ -1,4 +1,5 @@
 #include "../include/QueuesManager.hpp"
+#include "../include/Queue.hpp"
 
 #include <algorithm>
 #include <cctype>

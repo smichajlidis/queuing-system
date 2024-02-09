@@ -1,12 +1,11 @@
 #ifndef _WINDOWSCREATOR_HPP_
 #define _WINDOWSCREATOR_HPP_
 
-#include "Window.hpp"
-#include "Station.hpp"
-#include "Kiosk.hpp"
-#include "AllQueuesScreen.hpp"
 #include "WindowsManager.hpp"
 #include "QueuesManager.hpp"
+
+class Window;
+class Station;
 
 #include <string>
 #include <memory>

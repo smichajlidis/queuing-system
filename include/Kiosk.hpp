@@ -2,7 +2,8 @@
 #define _KIOSK_HPP_
 
 #include "Window.hpp"
-#include "Queue.hpp"
+
+class Queue;
 
 #include <vector>
 #include <memory>

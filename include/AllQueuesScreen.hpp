@@ -2,8 +2,9 @@
 #define _ALLQUEUESSCREEN_HPP_
 
 #include "Window.hpp"
-#include "Station.hpp"
-#include "Queue.hpp"
+
+class Queue;
+class Station;
 
 #include <vector>
 #include <memory>

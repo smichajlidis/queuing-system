@@ -1,9 +1,10 @@
 #ifndef _WINDOW_HPP_
 #define _WINDOW_HPP_
 
-#include "Queue.hpp"
 #include "Animator.hpp"
 #include "WindowGrid.hpp"
+
+class Queue;
 
 #include <memory>
 #include <vector>

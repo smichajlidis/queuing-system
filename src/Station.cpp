@@ -1,4 +1,5 @@
 #include "../include/Station.hpp"
+#include "../include/Queue.hpp"
 
 Station::Station(const sf::VideoMode& mode, const std::string& title, const std::vector<std::shared_ptr<Queue>>& related_queues)
     : Window(mode, title, related_queues), next_button (sf::Vector2f(150, 50)), confirm_button (sf::Vector2f(150, 50)) {
